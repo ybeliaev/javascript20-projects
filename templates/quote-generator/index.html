@@ -36,7 +36,7 @@
     </div>
     <div class="alert">
         <pre><code>
-            // Get Quote From API
+            <span>// Get Quote From API</span>
             async function getQuote() {
                 const apiUrl = 'https://api.forismatic.com/api/1.0/?method=getQuote&lang=ru&format=json';
                 try {
@@ -44,11 +44,10 @@
                     const data = await response.json;
                     console.log(data)
                 } catch (error) {
-                    console.log("Опс..нет цитаты!", error)
+                    console.log("Упс..нет цитаты!", error)
                 }
             }
-
-            // On Load
+            <span>// On Load</span>
             getQuote();
         </code></pre>
         <p>Но не сработает из-за CORS. Поэтому иду в <code>https://github.com/Rob--W/cors-anywhere/</code> и беру там
@@ -59,9 +58,9 @@
         <p>Чтобы в случае <code>SyntaxError</code> не прерывалось исполнение, добавлю <code>getQuote()</code> в
             обработчик ошибок</p>
         <pre><code>
-            // Get Quote From API
+            <span>// Get Quote From API</span>
             async function getQuote() {
-                // We need to use a Proxy URL to make our API call in order to avoid a CORS error
+                <span>// We need to use a Proxy URL to make our API call in order to avoid a CORS error</span>
                 const proxyUrl = 'https://jacinto-cors-proxy.herokuapp.com/';
                 const apiUrl = 'https://api.forismatic.com/api/1.0/?method=getQuote&lang=ru&format=json';
                 try {
@@ -73,9 +72,44 @@
                     console.log("Опс..нет цитаты!", error)
                 }
             }
-
-            // On Load
+            <span>// On Load</span>
             getQuote();
+        </code></pre>
+        <h3><code>Node.innerText</code> - это свойство, позволяющее задавать или получать текстовое содержимое элемента.
+        </h3>
+        <h4>Различия <code>innerText</code> и <code>textContent</code></h4>
+        <ol>
+            <li><code>innerText</code> was non-standard, while <code>textContent</code> was standardized earlier.</li>
+            <li><code>innerText</code> returns the visible text contained in a node, while <code>textContent</code>
+                returns the full text. </li>
+            <li>As a result, <code>innerText</code> is much more performance-heavy: it requires layout information to
+                return the result.</li>
+            <li><code>innerText</code> is defined only for HTMLElement objects, while <code>textContent</code> is
+                defined for all Node objects.</li>
+        </ol>
+        <p>Пришедший объект <code>data</code> имеет ключи:</p>
+        <pre><code>
+            quoteAuthor: "Софья Бессонова"
+            quoteLink: "http://forismatic.com/ru/036e2b78cf/"
+            quoteText: "Бриллиантом может стать только самородок души. Не ищите его в другом месте. Его там нет."
+            senderLink: ""
+            senderName: ""
+        </code></pre>
+        <p>После получения всех нужных элементов можно написать:</p>
+        <pre><code>
+            <span>// Check if Author field is blank and replace it with 'Unknown'</span>
+            if (data.quoteAuthor === '') {
+                authorText.innerText = 'Unknown';
+            } else {
+                authorText.innerText = data.quoteAuthor;
+            }
+            <span>// Dynamically reduce font size for long quotes</span>
+            if (data.quoteText.length > 120) {
+                quoteText.classList.add('long-quote');
+            } else {
+                quoteText.classList.remove('long-quote');
+            }
+            quoteText.innerText = data.quoteText;
         </code></pre>
     </div>
 

@@ -51,11 +51,17 @@ code {
     background-color: rgba(255, 240, 174, 0.342);
     padding-top: 3px;
     padding-bottom: 3px;
+    color: rgb(107, 107, 107);
+}
+
+code span {
+    color: rgb(45, 45, 248);
+    font-style: italic;
 }
 
 
-
 .quote-container {
+    margin-top: 1rem;
     width: auto;
     max-width: 900px;
     padding: 20px 30px;
