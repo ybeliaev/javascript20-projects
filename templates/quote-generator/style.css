@@ -32,9 +32,27 @@ body {
     justify-content: center;
     align-items: center;
 }
-.code{
-    display: block;
+
+.alert {
+    margin-top: 1rem;
+    text-align: left;
 }
+
+.alert pre {
+    background-color: rgba(255, 240, 174, 0.342);
+}
+
+.alert pre code {
+    background-color: transparent;
+}
+
+code {
+    line-height: 1.5;
+    background-color: rgba(255, 240, 174, 0.342);
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
 
 
 .quote-container {
@@ -105,7 +123,7 @@ button:active {
 /* Media Query: Tablet or Smaller */
 @media screen and (max-width: 1000px) {
     .quote-container {
-        margin: auto 10px;
+        margin: 0.5rem 10px;
     }
 
     .quote-text {
