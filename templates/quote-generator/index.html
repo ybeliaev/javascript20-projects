@@ -29,8 +29,10 @@
             <button class="twitter-button" id="twitter" title="Tweet this!">
                 <i class="fab fa-twitter"></i>
             </button>
-            <button class="new-qoute">New quote</button>
+            <button class="new-quote" id="new-quote">New quote</button>
         </div>
+        <!-- Loader -->
+        <div class="loader" id="loader"></div>
 
         <!-- end container -->
     </div>
@@ -111,6 +113,17 @@
             }
             quoteText.innerText = data.quoteText;
         </code></pre>
+        <p>Теперь для работы с Twitter API иду в
+            <code>https://developer.twitter.com/en/docs/twitter-for-websites/tweet-button/overview</code> и </p>
+        <pre><code>
+            function tweetQuote() {
+                const quote = quoteText.innerText;
+                const author = authorText.innerText;
+                const twitterUrl = `https://twitter.com/intent/tweet?text=${quote} - ${author}`;
+                window.open(twitterUrl, '_blank');
+            }
+        </code></pre>
+        <p>Должно перекинуть на твитер страницу с предложением затвитить пост..</p>
     </div>
 
     <script src="./scripts.js"></script>
