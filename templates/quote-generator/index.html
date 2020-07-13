@@ -134,7 +134,8 @@
             }
             <span>Атрибут и DOM-свойство «hidden» указывает на то, видим ли мы элемент или нет. Свойство hidden является Boolean типом данных.</span>
         </code></pre>
-        <p>Поместить loader() в основную функцию, в начало:</p>
+        <p> <code>DOM-elem.hidden = true</code> спрячет элемент</p>
+        <p>Поместить <code>loader()</code> в основную функцию, в начало:</p>
         <pre><code>
             async function getQuote() {
                 loading();
@@ -143,7 +144,7 @@
                 const apiUrl = 'https://api.forismatic.com/api/1.0/?method=getQuote&lang=ru&format=json';
                 <i>..some code</i>
         </code></pre>
-        <h3>Создать ф-ию, убирающую loader</h3>
+        <h3>Создать ф-ию, убирающую <code>loader</code></h3>
         <pre><code>
             function complete() {
                 if (!loader.hidden) {
