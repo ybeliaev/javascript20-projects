@@ -11,20 +11,80 @@
 </head>
 
 <body>
+    <h1>Unsplash API - Infinite Scroll.</h1>
+    <div class="alert">
+        <p>Для начала иду на <code>https://loading.io/</code> выбираю спинер. Также шрифт "бебас" на google font.</p>
+        <p>Стили для лоадера:</p>
+        <pre><code>
+            .loader {
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                background: rgba(255, 255, 255, 0.8);
+            }
+            <span>loader растянут на всю страницу</span>
+            .loader img {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%)
+            }
+            <span>сама картинка svg центрирована</span>
+        </code></pre>
+        <p>Спрячу лоадер атрибутом <code>hidden</code></p>
+        <p>За фотками на Unsplash.com</p>
+        <p>Для контейнера фоток задать <code>margin: 10px 30%;</code> Эти <code>30%</code> ужмут контейнер. Фоткам
+            классично <code>width: 100%;</code></p>
+        <h3>Работа с API unsplash.com</h3>
+        <p><code>https://unsplash.com/documentation</code> там в Setting up an application и перейти по ссылке в
+            Creating a developer account и зарегистрироваться.</p>
+        <p>В <code>https://unsplash.com/documentation#schema</code> беру параметр запроса и в подразделе "рандомные
+            фото" параметр фильтра случайного фото</p>
+        <p>Для получения ключа Your apps -> new application. Беру значение Access Key..</p>
+        <pre><code>
+            <span>// Unsplash API</span>
+            const count = 30;
+            const apiKey = 'cruZ_r6yEZ3Se3XnlbbcwG3DTJ2SvhG-eXT-6z3sz8Q';
+            const apiUrl = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=${count}`;
+            <span>// Get photos from Unsplash API</span>
+            async function getPhotos() {
+                try {
+                    const response = await fetch(apiUrl);
+                    const data = await response.json();
+                    console.log(data)
+                } catch (error) {
+                    <span>// Catch Error Here</span>
+                }
+            }
+
+            <span>// On Load</span>
+            getPhotos();
+        </code></pre>
+        <p>Получили массив объектов сс множеством свойств.</p>
+
+    </div>
     <div class="container">
-        <h1>Unsplash API - Infinite Scroll.</h1>
+
         <!-- loader -->
-        <div class="loader" id="loader">
+        <div class="loader" id="loader" hidden>
             <img src="./loader.svg" alt="loading">
+        </div>
+        <!-- image container -->
+        <div class="image-container" id="image-container">
+            <img src="https://images.unsplash.com/photo-1594242730913-750230ca81d8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+                alt="">
+            <img src="https://images.unsplash.com/photo-1594319506526-c515c004cd77?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+                alt="">
+            <img src="https://images.unsplash.com/photo-1594322575754-62756d1d16b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+                alt="">
         </div>
 
         <!-- end container -->
     </div>
-    <!-- Loader -->
 
-    <div class="alert">
-        <p>Для начала иду на <code>https://loading.io/</code> выбираю спинер. Также шрифт "бебас" на google font.</p>
-    </div>
+
 
     <script src="./scripts.js"></script>
 </body>
