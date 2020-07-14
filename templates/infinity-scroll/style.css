@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&display=swap');
+
+@supports (font-variation-settings: normal) {
+    code {
+        font-family: 'Fira Code VF', monospace;
+    }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+code {
+    font-family: 'Fira Code', monospace;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,600;1,200;1,400&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+    text-align: center;
+}
+
+h1 {
+    font-size: 60px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    letter-spacing: 5px;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: whitesmoke;
+    font-family: Bebas Neue, sans-serif;
+    text-align: center;
+    color: #222222;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    text-align: left;
+}
+
+.alert {
+    margin-top: 1rem;
+    text-align: left;
+}
+
+.alert pre {
+    background-color: rgba(255, 240, 174, 0.342);
+}
+
+.alert pre code {
+    background-color: transparent;
+}
+
+code {
+    line-height: 1.5;
+    background-color: rgba(255, 240, 174, 0.342);
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color: rgb(107, 107, 107);
+}
+
+code span {
+    color: rgb(45, 45, 248);
+    font-style: italic;
+}
+
+.container {
+    background-color: inherit;
+}
+
+/* =========================================== */
