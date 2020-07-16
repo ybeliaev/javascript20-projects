@@ -64,6 +64,20 @@
         </code></pre>
         <p>Получили массив объектов сс множеством свойств.</p>
         <h3>Теперь фото вывести на экран.</h3>
+        <p>Получаю контейнеры, и инициализирую <code>photosArray</code> под массив фоток</p>
+        <p>Пишу ф-ию <code>displayPhotos</code></p>
+        <pre><code>
+            async function getPhotos() {
+                try {
+                    const response = await fetch(apiUrl);
+                    const photosArray = await response.json();
+                    console.log(photosArray);
+                    displayPhotos();
+                } catch (error) {
+                    <span>// Catch Error Here</span>
+                }
+            }
+        </code></pre>
 
     </div>
     <div class="container">
