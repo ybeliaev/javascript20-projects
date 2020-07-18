@@ -181,6 +181,17 @@
                 }
             }
         </code></pre>
+        <h3>Code rewiew:</h3>
+        <p>Много картинок могут грузиться медленно. Изменяю <code>let count = 5;</code></p>
+        <p>Также в этой части кода</p>
+        <pre><code>
+            if (imagesLoaded === totalImages) {
+                ready = true;
+                loader.hidden = true;                
+                count = 25;
+                apiUrl = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=${count}`;
+            }
+        </code></pre>
     </div>
     <div class="container">
 
