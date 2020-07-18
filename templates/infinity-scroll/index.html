@@ -131,7 +131,15 @@
             <li><code>scrollY</code> - на сколько пикселей страница пролистана вниз</li>
             <li><code>pageYOffset</code> - то ж самое</li>
             <li><code>scrollTop</code> - насколько пикселей пролистано от начала элемента до видимой области</li>
+            <li><code>offsetWidth</code>/<code>Height</code>: содержат полный размер (ширину/высоту) элемента, включая рамки.</li>
         </ul>
+        <pre><code>
+            window.addEventListener('scroll', () => {    
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000 ) {      
+                  getPhotos();      
+                }    
+              });
+        </code></pre>
     </div>
     <div class="container">
 

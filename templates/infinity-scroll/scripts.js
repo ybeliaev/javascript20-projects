@@ -2,7 +2,7 @@ console.log("Начало работы")
 const imageContainer = document.getElementById('image-container');
 const loader = document.getElementById('loader');
 
-// let ready = false;
+let ready = false;
 // let imagesLoaded = 0;
 // let totalImages = 0;
 let photosArray = [];
@@ -36,8 +36,7 @@ function displayPhotos(data) {
 async function getPhotos() {
     try {
         const response = await fetch(apiUrl);
-        const photosArray = await response.json();
-        console.log(photosArray);
+        const photosArray = await response.json();        
         displayPhotos(photosArray);
 
     } catch (error) {
@@ -45,12 +44,10 @@ async function getPhotos() {
     }
 }
 // Check to see if scrolling near bottom of page, Load More Photos
-window.addEventListener('scroll', () => {
-    // if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000 && ready) {
-    // //   ready = false;
-    // //   getPhotos();
-    // }
-    console.log(window.scrollY)
+window.addEventListener('scroll', () => {    
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000 ) {      
+      getPhotos();      
+    }    
   });
 
 // On Load
