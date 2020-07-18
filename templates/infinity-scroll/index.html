@@ -78,7 +78,35 @@
                 }
             }
         </code></pre>
-
+        <p>Сама функция <code>displayPhotos</code></p>
+        <pre><code>
+            function displayPhotos(data) {                
+                data.forEach(photo => {
+                    <span>// Create a to link to full photo</span>
+                    const item = document.createElement("a");
+                    item.setAttribute("href", photo.links.html);
+                    item.setAttribute("target", "_blank");
+                    <span>// Create img for photo</span>
+                    const img = document.createElement('img');
+                    img.setAttribute("src", photo.urls.regular);
+                    img.setAttribute("alt", photo.alt_description);
+                    img.setAttribute("title", photo.alt_description);
+                    <span>// Put img inside a, then put both inside imageContainer Element</span>
+                    item.appendChild(img);
+                    imageContainer.appendChild(item);
+                });                
+            }
+        </code></pre>
+        <p>Второй элемент в <code>setAttribute</code> строка - намучился, передав <code>_blank</code> вместо
+            <code>"_blank"</code> </p>
+        <p>Метод <code>setAttribute</code> можно записать для нескольких значений:</p>
+        <pre><code>
+            setAttributes(img, {
+                src: photo.urls.regular,
+                alt: photo.alt_description,
+                title: photo.alt_description,
+              });
+        </code></pre>
     </div>
     <div class="container">
 
@@ -88,12 +116,7 @@
         </div>
         <!-- image container -->
         <div class="image-container" id="image-container">
-            <img src="https://images.unsplash.com/photo-1594242730913-750230ca81d8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
-                alt="">
-            <img src="https://images.unsplash.com/photo-1594319506526-c515c004cd77?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
-                alt="">
-            <img src="https://images.unsplash.com/photo-1594322575754-62756d1d16b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
-                alt="">
+
         </div>
 
         <!-- end container -->
