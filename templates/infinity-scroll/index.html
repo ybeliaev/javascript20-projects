@@ -140,11 +140,52 @@
                 }    
               });
         </code></pre>
+        <h3>У жизненного цикла HTML-страницы есть три важных события:</h3>
+        <ol>
+            <li><code>DOMContentLoaded</code> – браузер полностью загрузил HTML, было построено DOM-дерево, но внешние ресурсы, такие как картинки <code>img</code> и стили, могут быть ещё не загружены.</li>
+            <li><code>load</code> – браузер загрузил HTML и внешние ресурсы (картинки, стили и т.д.).</li>
+            <li><code>beforeunload</code>/<code>unload</code> – пользователь покидает/покинул страницу.</li>
+        </ol>
+        <p>В функцию <code>displayPhotos</code>:</p>
+        <pre><code>
+            img.addEventListener('load', imageLoaded);
+        </code></pre>
+        <p>Сама функция</p>
+        <pre><code>
+            function imageLoaded() {
+                console.log("image loaded..")
+            }
+        </code></pre>
+        <p>Т.к <code>const count = 10;</code>, то в консоли надпись "image loaded.." появится 10 раз. Т.е функция запускается на загризке КАЖДОЙ картинки!</p>
+        <p>Добавить переменные</p>
+        <pre><code>
+            let ready = false;
+            let imagesLoaded = 0;
+            let totalImages = 0;
+            <span>// а функция изменится</span>
+            function imageLoaded() {
+                imagesLoaded++;
+                if (imagesLoaded === totalImages) {
+                  ready = true;                  
+                }
+              }
+        </code></pre>
+        <p>Забрать атрибут <code>hidden</code> с <code>img</code> и добавить <code>loader.hidden = true</code></p>       
+        <pre><code>
+            function imageLoaded() {    
+                imagesLoaded++;
+                console.log("image loaded: ", imagesLoaded)
+                if (imagesLoaded === totalImages) {
+                    ready = true;
+                    loader.hidden = true;
+                }
+            }
+        </code></pre>
     </div>
     <div class="container">
 
         <!-- loader -->
-        <div class="loader" id="loader" hidden>
+        <div class="loader" id="loader">
             <img src="./loader.svg" alt="loading">
         </div>
         <!-- image container -->
