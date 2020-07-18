@@ -107,6 +107,31 @@
                 title: photo.alt_description,
               });
         </code></pre>
+        <p>Но для этого нужно создать функцию:</p>
+        <pre><code>
+            function setAttributes(element, attributes) {
+                for (const key in attributes) {
+                  element.setAttribute(key, attributes[key]);
+                }
+              }
+        </code></pre>
+        <h3>Делаю бесконечную подгрузку.</h3>
+        <p>Событие прокрутки <code>scroll</code> позволяет реагировать на прокрутку страницы или элемента. Есть много хороших вещей, которые при этом можно сделать.</p>
+        <div class="image-container">
+            <img src="./scroll.png" alt="scroll img">
+        </div>
+        <p> <code>scrollY</code> возвращает Y-координату от верхнего края текущего окна просмотра (viewport).</p>
+        <pre><code>
+            window.addEventListener('scroll', () => {                
+                console.log(window.scrollY)
+              });
+    <span>// При прокрутке будут появляться числа - расстояние от верхнего края</span>
+        </code></pre>
+        <ul>
+            <li><code>scrollY</code> - на сколько пикселей страница пролистана вниз</li>
+            <li><code>pageYOffset</code> - то ж самое</li>
+            <li><code>scrollTop</code> - насколько пикселей пролистано от начала элемента до видимой области</li>
+        </ul>
     </div>
     <div class="container">
 
