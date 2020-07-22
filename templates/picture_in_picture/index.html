@@ -20,16 +20,35 @@
     <div class="button-container">
         <button id="button">START</button>
     </div>
-        <div class="alert">
-        <h3>About technology:</h2>
-        <div class="link">
-            <a href="https://css-tricks.com/an-introduction-to-the-picture-in-picture-web-api/" target="_blank">Read about picture in picture</a>
-        </div>
-        <div class="link">
-            <a href="https://developer.mozilla.org/ru/docs/Web/API/Screen_Capture_API" target="_blank">Screen_Capture_API</a>
-        </div>
-        
-        
+        <div class="content">
+            <h3>About technology:</h2>
+            <div class="link">
+                <a href="https://css-tricks.com/an-introduction-to-the-picture-in-picture-web-api/" target="_blank">Read about picture in picture</a>
+            </div>
+            <div class="link">
+                <a href="https://developer.mozilla.org/ru/docs/Web/API/Screen_Capture_API" target="_blank">Screen_Capture_API</a>
+            </div>  
+            <p>Контейнеру кнопки <code>display: inline-block</code> чтобы ужалось по контенту</p>
+            <p>Стартовая конструкция:</p>
+            <pre><code>
+                async function selectMediaStream() {
+                    try {
+                        console.log("some code")
+                    
+                    } catch (error) {
+                        console.log("Error! Here: ", error)
+                    }
+                  }
+                
+                  // On Load
+                selectMediaStream();
+            </code></pre>
+            <p>Метод <code>getDisplayMedia()</code> интерфейса MediaDevices предлагает пользователю выбрать и предоставить разрешение на захват содержимого дисплея или его части (например, окна) в качестве MediaStream.</p>
+            <p>Синтаксис:</p>
+            <pre><code>
+                var promise = navigator.mediaDevices.getDisplayMedia(constraints);
+            </code></pre>
+            <p>Убрать атрибут <code>hidden</code></p>
         </div>
 
         <!-- end container -->
