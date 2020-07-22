@@ -52,7 +52,8 @@
             function tellMe() {                
                 <span>// VoiceRSS Speech Parameters</span>
                 VoiceRSS.speech({
-                 <span> // Normally, don't write out API Keys like this, but an exception made here because it's free.</span>
+                 <span> // Normally, don't write out API Keys like this, </span>
+                  <span>// but an exception made here because it's free.</span>
                   key: 'e985f868e96c46d9b0789c3855350152',
                   src: jokeString,
                   hl: 'en-us',
@@ -65,6 +66,24 @@
         </code></pre>
         <h3>API севиса случайных шуток</h3>
         <p>Иду на сайт <a href="https://sv443.net/jokeapi/v2/#joke-type">sv443.net</a>  и получаю <code>https://sv443.net/jokeapi/v2/joke/Programming?blacklistFlags=nsfw,racist,sexist</code></p>
+        <p>Объект json в виде:</p>
+        <pre><code>
+            {
+                "category": "Programming",
+                "type": "twopart",
+                "setup": "Why is 6 afraid of 7 in hexadecimal Canada?",
+                "delivery": "Because 7 8 9 A?",
+                "flags": {
+                    "nsfw": false,
+                    "religious": false,
+                    "political": false,
+                    "racist": false,
+                    "sexist": false
+                },
+                "id": 7,
+                "error": false
+            }
+        </code></pre>
     </div>
 
 
