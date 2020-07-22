@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">     -->
+    <link rel="icon" href="./favicon.png">
+    <link rel="stylesheet" href="./style.css">
+    <title>Joke teller.</title>
+</head>
+
+<body>
+    <h1>Joke teller technology.</h1>
+    
+    <div class="container">       
+        <button id="button">Tell Me A Joke</button>    
+        <audio id="audio" controls hidden></audio>   
+
+        <!-- end container -->
+    </div>
+    <div class="content">
+        <h3>HTML, CSS структуры.</h3>
+        <pre><code>
+            &lt;button id=&quot;button&quot;&gt;Tell Me A Joke&lt;/button&gt;    
+            &lt;audio id=&quot;audio&quot; controls hidden&gt;&lt;/audio&gt; 
+        </code></pre>
+        <p>Свойства бэкграунда:</p>
+        <pre><code>
+            background: url('./robot.gif');
+            background-size: contain;
+            background-position: left center;
+            background-repeat: no-repeat;
+            <span>left - прижата к левому краю, center - по оси Y отцентрирована.</span>
+        </code></pre>
+    </div>
+
+
+    <script src="voiceRSS.js"></script>
+    <script src="./scripts.js"></script>
+</body>
+
+</html>

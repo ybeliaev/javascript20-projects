@@ -15,7 +15,7 @@
     
     <div class="container">       
     <!-- Video -->
-       <video id="video" controls height="360" width="640" hidden></video>
+       <video id="video" controls height="360" width="640" hidden ></video>
     <!-- Button -->
     <div class="button-container">
         <button id="button">START</button>
@@ -49,6 +49,47 @@
                 var promise = navigator.mediaDevices.getDisplayMedia(constraints);
             </code></pre>
             <p>Убрать атрибут <code>hidden</code></p>
+            <pre><code>
+                const videoElement = document.getElementById('video');
+                const button = document.getElementById('button');
+
+                <span>// Prompt to select media stream, pass to video element, then play</span>
+                <span>// Предложить выбрать медиапоток, перейти к элементу видео, затем воспроизвести</span>
+                async function selectMediaStream() {
+                    try {
+                    const mediaStream = await navigator.mediaDevices.getDisplayMedia();
+                    console.log(videoElement);
+                    console.log(mediaStream);
+                    videoElement.srcObject = mediaStream;
+                    videoElement.onloadedmetadata = () => {
+                        videoElement.play();
+                    };
+                    } catch (error) {
+                        console.log("Error! Here: ", error)
+                    }
+                }
+
+                <span>// On Load</span>
+                selectMediaStream();
+            </code></pre>
+            <div class="alert">
+                <p>Свойство <code>srcObject</code> интерфейса <code>HTMLMediaElement</code> устанавливает или возвращает объект, который служит источником мультимедиа, связанного с <code>HTMLMediaElement</code>.  Объект может быть <code>MediaStream</code>, <code>MediaSource</code>, <code>Blob</code> или <code>File</code> (который наследуется от <code>Blob</code>). </p>
+            </div>
+            <p>Добавить событие на кнопку ,что бы по клику вызывался эффект "картинка в картинке"</p>
+            <p>Вернуть атрибут <code>hidden</code> для элемента видео.</p>
+            <pre><code>
+                button.addEventListener('click', async () => {
+                    <span>// Disable Button</span>
+                    button.disabled = true;
+                    <span>// Start Picture in Picture</span>
+                    await videoElement.requestPictureInPicture();
+                    <span>// Reset Button</span>
+                    button.disabled = false;
+                });
+            </code></pre>
+            <div class="alert">
+                <p>Но конструкция <code>async await</code> работает только в хроме..</p>
+            </div>
         </div>
 
         <!-- end container -->
