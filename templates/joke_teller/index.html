@@ -33,6 +33,38 @@
             background-repeat: no-repeat;
             <span>left - прижата к левому краю, center - по оси Y отцентрирована.</span>
         </code></pre>
+        <pre><code>
+            @media screen and (max-width: 1000px) {
+                .container {
+                  background-position: center center;
+                  background-size: cover;
+                }
+        </code></pre>
+        <h3>Выбор Text API.</h3>
+        <p>Можно зайти на <a href="https://rapidapi.com/collection/best-text-to-speech-apis" target="_blank">Best Text to Speech APIs</a> выбрал Text-to-Speech, по ссылке зарегился, там же взял API Key, вставил в поле <code>key QUERY</code>, нажать на кнопку <code>Text Endpoint</code>, там опять зарегаться, прекинет назад, опять нажать кнопку <code>Text Endpoint</code> и получить ответ 200.</p>
+        <p>Вижу также <code>ERROR: The account is inactive!</code>. Иду в поле регистрации и жму <code>active account</code></p>
+        <p>Снова жмяк <code>Text Endpoint</code> и в поле получил медиапроигрыватель</p>
+        <h3>Документация</h3>
+        <a href="http://www.voicerss.org/api/">Docs</a>
+        <h3>JavaScript SDK</h3>
+        <p>В левой колонке выбрать JavaScript, загрузить SDK, подключить к скриптам + добавить <code>VoiceRSS.speech</code></p>
+        <pre><code>
+            function tellMe() {                
+                <span>// VoiceRSS Speech Parameters</span>
+                VoiceRSS.speech({
+                 <span> // Normally, don't write out API Keys like this, but an exception made here because it's free.</span>
+                  key: 'e985f868e96c46d9b0789c3855350152',
+                  src: jokeString,
+                  hl: 'en-us',
+                  r: 0,
+                  c: 'mp3',
+                  f: '44khz_16bit_stereo',
+                  ssml: false,
+                });
+              }
+        </code></pre>
+        <h3>API севиса случайных шуток</h3>
+        <p>Иду на сайт <a href="https://sv443.net/jokeapi/v2/#joke-type">sv443.net</a>  и получаю <code>https://sv443.net/jokeapi/v2/joke/Programming?blacklistFlags=nsfw,racist,sexist</code></p>
     </div>
 
 
