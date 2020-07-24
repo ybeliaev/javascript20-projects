@@ -84,6 +84,76 @@
                 "error": false
             }
         </code></pre>
+        <p>Этот объект приходит в data:</p>
+        <pre><code>
+            category: "Programming"
+            error: false
+            flags: {nsfw: false, religious: false, political: false, racist: false, sexist: false}
+            id: 34
+            joke: "Eight bytes walk into a bar.↵The bartender asks, 
+            "Can I get you anything?"↵"Yeah," reply the bytes.↵"Make us a double.""
+        </code></pre>
+        <p>Сам код:</p>
+        <pre><code>
+            async function getJokes() {
+                <span>// нужно данные слепить в строку и проверить есть ли вообще данные</span>
+                <span>// поэтому создать массив</span>
+                let joke = '';
+                const apiUrl = 'https://sv443.net/jokeapi/v2/joke/Programming?blacklistFlags=nsfw,racist,sexist';
+                try {
+                  const response = await fetch(apiUrl);
+                  const data = await response.json();
+                  console.log(data);
+                  <span>// Assign One or Two Part Joke</span>
+                  if (data.setup) {
+                    joke = `${data.setup} ... ${data.delivery}`;
+                  } else {
+                    joke = data.joke;
+                  }
+                    console.log(joke);
+                  <span>// Passing Joke to VoiceRSS API</span>
+                  tellMe(joke);
+                  <span>// Disable Button</span>
+                  toggleButton();
+                } catch (error) {
+                  <span>// Catch Error Here</span>
+                    console.error("Oppps", error)
+                }
+              }
+        </code></pre>
+        <h3>Передача joke в VoiceRSS</h3>
+        <p>Это функция <code>tellMe(joke)</code> принимающая <code>joke</code></p>
+        <p>Её вызывать в <code>function getJokes()</code></p>
+        <p>Чтобы связать функции <code>VoiceRSS.speech</code> и <code>getJokes()</code>, <code>joke</code> передаётся в <code>src</code> через <code>jokeString</code> </p>
+        <pre><code>
+            function tellMe(joke) {
+                const jokeString = joke.trim().replace(/ /g, '%20');
+                <span>// VoiceRSS Speech Parameters</span>
+                VoiceRSS.speech({
+                <span>  // Normally, don't write out API Keys like this, but an exception made here because it's free.</span>
+                  key: 'e985f868e96c46d9b0789c3855350152',
+                  src: jokeString,
+                  hl: 'en-us',
+                  r: 0,
+                  c: 'mp3',
+                  f: '44khz_16bit_stereo',
+                  ssml: false,
+                });
+              }
+        </code></pre>
+
+        <p>Теперь поввесить обработчик событий на кнопку: <code>button.addEventListener('click', getJokes)</code></p>
+        <p>Осталось исправить возможность нажать кнопку во время проигрывания.</p>
+        <div class="alert">
+            <p>Событие <code>ended</code> происходит, когда аудио/видео достиг конца.</p>
+        </div>
+        <p>Для этого на полученный аудио элемент: <code>audioElement.addEventListener('ended', toggleButton)</code></p>
+        <pre><code>
+            function toggleButton() {
+                button.disabled = !button.disabled;
+              }
+        </code></pre>
+        <p>Эта функция <code>toggleButton()</code> делает неактивной кнопку при вызове <code>function getJokes()</code></p>
     </div>
 
 

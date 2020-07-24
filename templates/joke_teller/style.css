@@ -34,6 +34,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 1.2rem;
 }
 
 p {
@@ -57,10 +58,10 @@ p {
 code {
     line-height: 1.5;
     background-color: rgba(255, 240, 174, 0.342);
-    padding-top: 3px;
+    padding: 3px;
     padding-bottom: 3px;
     color: rgb(22, 22, 22);
-    font-size: 1.4rem;
+    font-size: 1.3rem;
 }
 
 code span {

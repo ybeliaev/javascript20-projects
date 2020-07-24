@@ -35,18 +35,21 @@ async function getJokes() {
   try {
     const response = await fetch(apiUrl);
     const data = await response.json();
+    console.log("data: ",data);
     // Assign One or Two Part Joke
     if (data.setup) {
       joke = `${data.setup} ... ${data.delivery}`;
     } else {
       joke = data.joke;
     }
+    console.log("joke: ",joke);
     // Passing Joke to VoiceRSS API
     tellMe(joke);
     // Disable Button
     toggleButton();
   } catch (error) {
     // Catch Error Here
+    console.error("Oppps: ", error);
   }
 }
 
