@@ -201,6 +201,41 @@
             0: span.toggle-text
             1: i.fas.fa-moon
         </code></pre>
+        <h3>localStorage</h3>
+        <p><code>localStorage</code> — это данные, которые хранятся бессрочно и будут доступны даже после перезагрузки браузера.</p>
+        <p>Веб-хранилище довольно удобно для сохранения данных, таких как предпочтения пользователей (светлая или темная цветовая схема на сайте и тп), сохранение товаров, положенных в корзину или запоминание того, что пользователь залогинен на сайте.</p>
+        <a href="https://medium.com/@stasonmars/%D0%BA%D0%B0%D0%BA-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D1%82%D1%8C-%D1%81-localstorage-%D0%B2-javascript-5aad737535d4">Больше про localStorage</a>
+        <p>В функцию <code>switchTheme()</code> добавить метод устанавливающий пару ключ-значение:</p>
+        <pre><code>
+            function switchTheme(event) {
+                if (event.target.checked) {
+                  document.documentElement.setAttribute('data-theme', 'dark');
+                  <span>localStorage.setItem('theme', 'dark');</span>
+                  darkMode();
+                } else {
+                  document.documentElement.setAttribute('data-theme', 'light');
+                  <span>localStorage.setItem('theme', 'light');</span>
+                  lightMode();
+                }
+              }
+        </code></pre>
+        <div class="img-container">
+            <img src="./img/localStorege.png" alt="localStorege">
+        </div>
+
+        <pre><code>
+        <span>// Check Local Storage For Theme</span>
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+
+        if (currentTheme === 'dark') {
+            toggleSwitch.checked = true;
+            darkMode();
+        }
+        }
+        </code></pre>
+        <p>Теперь выбор темы будет в "памяти" и не пропадёт после перезагрузке или перезаходе на страницу.</p>
 
     </div>
 
