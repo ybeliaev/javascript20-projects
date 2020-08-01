@@ -173,8 +173,34 @@
         <div class="alert">
             <p>Фильтр <code>invert()</code> инвертирует все цвета в выбранных элементах</p>
             <p>Фильтр <code>brightness()</code> делает элемент ярче или темнее. Значение <code>0</code> дает полностью темный элемент. Фильтр <code>invert()</code> делает некоторые элементы очень яркими. Они смягчаются установкой <code>brightness(0.6)</code>.</p>
-        </div>  
+        </div> 
+        <h3>Теперь реализовать изменения картинки и надписи в зависимости от темы.</h3> 
+        <pre><code>
+        <span>// Dark Mode Styles</span>
+        function darkMode() {
+        nav.style.backgroundColor = 'rgb(0 0 0 / 50%)';
+        textBox.style.backgroundColor = 'rgb(255 255 255 / 50%)';
+        toggleIcon.children[0].textContent = 'Dark Mode';
+        toggleIcon.children[1].classList.replace('fa-sun', 'fa-moon');
+        imageMode('dark');
+        }
 
+        <span>// Light Mode Styles</span>
+        function lightMode() {
+        nav.style.backgroundColor = 'rgb(255 255 255 / 50%)';
+        textBox.style.backgroundColor = 'rgb(0 0 0 / 50%)';
+        toggleIcon.children[0].textContent = 'Light Mode';
+        toggleIcon.children[1].classList.replace('fa-moon', 'fa-sun');
+        imageMode('light');
+        }
+        <span>Функция <code>imageMode()</code> для изменения картинок в зависимости от темы.</span>
+        </code></pre>
+        <p>Объект toggle.children представляет собой:</p>
+        <pre><code>
+            HTMLCollection(2) [span.toggle-text, i.fas.fa-sun]
+            0: span.toggle-text
+            1: i.fas.fa-moon
+        </code></pre>
 
     </div>
 
