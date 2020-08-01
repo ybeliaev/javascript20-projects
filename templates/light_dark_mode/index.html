@@ -163,6 +163,17 @@
         <div class="img-container">
             <img src="./img/data-theme-2.png" alt="theme-dark">
         </div>
+        <h3>Альтернативный метод изменения цвета</h3>
+        <pre><code>
+            [data-theme="dark"] {
+                ...тут старые переменные цветов, но добавить
+                filter: invert(1) brightness(0.6);
+              }
+        </code></pre>
+        <div class="alert">
+            <p>Фильтр <code>invert()</code> инвертирует все цвета в выбранных элементах</p>
+            <p>Фильтр <code>brightness()</code> делает элемент ярче или темнее. Значение <code>0</code> дает полностью темный элемент. Фильтр <code>invert()</code> делает некоторые элементы очень яркими. Они смягчаются установкой <code>brightness(0.6)</code>.</p>
+        </div>  
 
 
     </div>
