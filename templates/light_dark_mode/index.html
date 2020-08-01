@@ -126,6 +126,44 @@
             toggleSwitch.addEventListener('change', switchTheme);
             <span>В объекте <code>event.target</code> есть свойство <code>checked</code>, которое булево </span>
         </code></pre>
+        <p>Теперь можно проверить "чекнут" ли элемент</p>
+        <pre><code>
+            function switchTheme(e) {
+                console.log(e.target.checked)
+            }
+        </code></pre>
+        <div class="alert">
+            <p><code>Document.documentElement</code> - свойство только для чтения, которое возвращает элемент Element , который является коренным элементом документа  document (например элемент  <code>&lt;html&gt;</code> для HTML документов).</p>
+        </div>
+        <pre><code>
+            function switchTheme(e) {
+                if(e.target.checked){
+                  document.documentElement.setAttribute("data-theme", "dark");
+                  
+                } else{
+                  document.documentElement.setAttribute("data-theme", "light");
+                }
+              }
+        </code></pre>
+        <p>Важно помнить, что в style.css:</p>
+        <pre><code>
+            [data-theme="dark"] {
+                --primary-color: rgb(150, 65, 255);
+                --primary-variant: #6c63ff;
+                --secondary-color: #03dac5;
+                --on-primary: #000;
+                --on-background: rgba(255, 255, 255, 0.9);
+                --on-background-alt: rgba(255, 255, 255, 0.7);
+                --background: #121212;
+              }
+        </code></pre>
+        <div class="img-container">
+            <img src="./img/data-theme-1.png" alt="theme-light">
+        </div>
+        <div class="img-container">
+            <img src="./img/data-theme-2.png" alt="theme-dark">
+        </div>
+
 
     </div>
 

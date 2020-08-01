@@ -112,16 +112,17 @@ code span {
 }
 /* image-container */
 .img-container {
-    margin: 10px 20%;
+    margin: 10px 5%;
 }
 
 .img-container img {
     width: 100%;
+    height: auto;
     margin-top: 5px;
 }
 .alert{
     padding: 5px;
-    background-color: rgb(221, 221, 221);
+    background-color: rgb(222, 243, 255);
     border-left: 7px solid rgb(255, 145, 0);
     color: rgb(22, 22, 22);
     margin-bottom: 8px;
