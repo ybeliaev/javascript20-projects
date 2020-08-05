@@ -11,7 +11,7 @@
     <!-- Menu Overlay -->
   <div class="overlay overlay-slide-left" id="overlay">
     <!-- Menu Items -->
-    <nav>
+    <nav class="nav">
       <ul>
         <li id="nav-1" class="slide-out-1"><a href="#">Home</a></li>
         <li id="nav-2" class="slide-out-2"><a href="#about">About</a></li>
@@ -34,6 +34,28 @@
   <section id="projects"><h1>These Are My Results</h1></section>
   <section id="contact"><h1>Available Anytime</h1></section>
   <!-- Script -->
-  <script src="script.js"></script>
+
+<div class="container">
+  <div class="my-content">    
+    
+      <h2>Вызов меню</h2>
+      <p>Уже есть класс <code>.change</code> с различными своствами <code>transform</code></p>
+      <p>Код взят с <a href="https://www.w3schools.com/howto/howto_css_menu_icon.asp" target="_blank">Menu icon</a></p>
+      <pre><code>
+        const menuBars = document.getElementById('menu-bars');
+
+        function toggleNav() {
+          <span>// Toggle: Menu Bars Open/Closed</span>
+          menuBars.classList.toggle('change');
+          
+        }
+
+        menuBars.addEventListener('click', toggleNav);
+      </code></pre>
+    
+    </div>
+</div>
+
+  <script src="./main.js"></script>
 </body>
 </html>
