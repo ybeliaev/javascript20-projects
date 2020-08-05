@@ -49,9 +49,56 @@
           menuBars.classList.toggle('change');
           
         }
-
         menuBars.addEventListener('click', toggleNav);
       </code></pre>
+      <p>Теперь дописать функцию <code>toggleNav</code></p>
+      <pre><code>
+        function toggleNav() {
+          <span>// Toggle: Menu Bars Open/Closed</span>
+          menuBars.classList.toggle('change');
+          <span>// Toggle: Menu Active</span>
+          overlay.classList.toggle('overlay-active');
+          if (overlay.classList.contains('overlay-active')) {
+            <span>// Animate In - Overlay</span>
+            overlay.classList.replace('overlay-slide-left', 'overlay-slide-right');
+            <span>// Animate In - Nav Items</span>
+            navAnimation('out', 'in');
+          } else {
+            <span>// Animate Out - Overlay</span>
+            overlay.classList.replace('overlay-slide-right', 'overlay-slide-left');
+            <span>// Animate Out - Nav Items</span>
+            navAnimation('in', 'out');
+          }
+        }
+      </code></pre>
+      <p>При этом важно знать своства классов:</p>
+      <pre><code>
+        .overlay-slide-right {
+          transition: all 0.4s ease-in-out;
+          transform: translateX(0);
+        }
+        .overlay-slide-left {
+          transition: all 0.8s ease-in-out;
+          transform: translateX(-100vw);
+        }
+      </code></pre>
+      <p>Спарятанное меню обёрнуто в </p>
+      <pre><code>
+        &lt;div class=&quot;overlay overlay-slide-left&quot; id=&quot;overlay&quot;&gt;
+      </code></pre>
+      <p>Функция для изменения функции безье:</p>
+      <pre><code>
+        const navItems = [nav1, nav2, nav3, nav4, nav5];
+        <span>// Control Navigation Animation</span>
+        function navAnimation(direction1, direction2) {
+          navItems.forEach((nav, i) => {
+            nav.classList.replace(`slide-${direction1}-${i + 1}`, `slide-${direction2}-${i + 1}`);
+          });
+        }
+      </code></pre>
+      <div class="alert">
+        <p>Класс <code>.overlay-active</code> является флагом, не более.</p>
+      </div>
     
     </div>
 </div>
