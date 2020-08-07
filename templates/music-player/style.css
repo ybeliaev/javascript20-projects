@@ -18,16 +18,7 @@ h3 {
     color: #222222;
     font-family: sans-serif;
 }
-body {
-    margin: 0;
-    min-height: 100vh;    
-    color: #222222;
-    background-color: var(--background);  
-    font-family: 'Spartan', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 p {
     text-align: left;
 }
@@ -62,11 +53,11 @@ code span {
     font-style: italic;
 }
 /* image-container */
-.img-container {
+.my-img-container {
     margin: 10px 5%;
 }
 
-.img-container img {
+.my-img-container img {
     width: 100%;
     height: auto;
     margin-top: 5px;
@@ -94,74 +85,87 @@ a.link:hover {
     border-bottom: 3px solid;
 }
 /* ===================CONTENT======================== */
-.player-container{
-    width: 500px;
-    height: 550px;
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #c9ced3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Spartan, sans-serif;
+    font-size: 12px;
+  }
+  
+  .player-container {
+    height: 500px;
+    width: 400px;
     background: #e7e7e7;
     border-radius: 20px;
     box-shadow: 0 15px 30px 5px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.img-container{
+  }
+  
+  .img-container {
     width: 300px;
     height: 300px;
-    object-fit: cover;
     position: relative;
-    /* top: -50px; */
-    /* left: 50px; */
-}
-.img-container img{
-    width: 100%;
+    top: -50px;
+    left: 50px;
+  }
+  
+  .img-container img {
     height: 100%;
+    width: 100%;
     object-fit: cover;
     border-radius: 20px;
-    box-shadow: 0 5px 30px 5px rgba(0,0,0,0.5);
-}
-.player-container h2{
+    box-shadow: 0 5px 30px 5px rgba(0, 0, 0, 0.5);
+  }
+  
+  h2 {
     font-size: 25px;
     text-align: center;
     margin: 0;
-}
-.player-container h3 {
+  }
+  
+  h3 {
     font-size: 20px;
     text-align: center;
     font-weight: 400;
     margin: 5px 0 0;
   }
+  
   /* Progress */
-  .progress-container{
-      background: #fff;
-      border-radius: 5px;
-      cursor: pointer;
-      margin: 40px 20px;
-      width: 90%;
-      height: 4px;      
+  .progress-container {
+    background: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 40px 20px;
+    height: 4px;
+    width: 90%;
   }
-  .progress{
-      background: #242323;
-      border-radius: 5px;
-      width: 0%;
-      height: 100%;
-      transition: width 0.1s linear;
+  
+  .progress {
+    background: #242323;
+    border-radius: 5px;
+    height: 100%;
+    width: 0%;
+    transition: width 0.1s linear;
   }
-  .duration-wrapper{
-      position: relative;
-      /* top: -15px; */
-      /* left: 120px; */
-      width: 450px;
-      display: flex;
-      justify-content: space-between;
-  }
-/* Controls */
-.player-controls {
+  
+  .duration-wrapper {
     position: relative;
-    top: -20px;
-    left: 25px;
+    top: -25px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  /* Controls */
+  .player-controls {
+    position: relative;
+    top: -15px;
+    left: 120px;
     width: 200px;
   }
+  
   .fas {
     font-size: 30px;
     color: rgb(129, 129, 129);
@@ -169,16 +173,19 @@ a.link:hover {
     cursor: pointer;
     user-select: none;
   }
+  
   .fas:hover {
     filter: brightness(80%);
   }
+  
   .main-button {
     font-size: 40px;
     position: relative;
     top: 3px;
   }
+  
   /* Media Query: iPhone (Vertical) */
-@media screen and (max-width: 376px) {
+  @media screen and (max-width: 376px) {
     .player-container {
       width: 95vw;
     }
