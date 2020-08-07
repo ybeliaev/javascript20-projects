@@ -18,7 +18,7 @@
         </div>
         <h2 id="title">Electric Chill Machine</h2>
         <h3 id="artist">Jorgen</h3>
-        <audio src="music/jacinto-1.mp3" ></audio>
+        <audio src="music/music-1.mp3" ></audio>
         <!-- Progress -->
         <div class="progress-container" id="progress-container">
             <div class="progress" id="progress"></div>
@@ -33,6 +33,55 @@
             <i class="fas fa-play main-button" id="play" title="Play"></i>
             <i class="fas fa-forward" id="next" title="Next"></i>
         </div>
+    </div>
+    <div class="my-wrapper">
+        <h2>Элемент video\audio</h2>
+        <a class="link" href="https://www.w3schools.com/tags/ref_av_dom.asp">Ссылка на w3schools</a>
+        <p>Вначале получаем элементы проигрывателя(узла audio)</p>
+        <pre><code>
+        const music = document.querySelector('audio');
+        const prevBtn = document.getElementById('prev');
+        const playBtn = document.getElementById('play');
+        const nextBtn = document.getElementById('next');
+
+        <span>// Check if Playing</span>
+        let isPlaying = false;
+        <span>// Play</span>
+        function playSong() {   
+            isPlaying = true;       
+            music.play();
+        }        
+        <span>// Pause</span>
+        function pauseSong() { 
+            isPlaying = false;         
+            music.pause();
+        }
+        <span>// Play or Pause Event Listener</span>
+        playBtn.addEventListener('click', () => (isPlaying ? pauseSong() : playSong()));
+        </code></pre>
+        <p>Элемент music у нас <code>&lt;audio src=&quot;music/music-1.mp3&quot; &gt;&lt;/audio&gt;</code></p>
+        <p>Уже есть музыка!</p>
+        <h2>Добавить изменение картинки и исполнителя</h2>
+        <pre><code>
+        const image = document.querySelector('img');
+        const title = document.getElementById('title');
+        const artist = document.getElementById('artist');
+        </code></pre>
+        <p>Добавлю массив с объектами песен\исполнителей <code>songs</code> и функцию <code>loadSong</code></p>
+        <pre><code>
+            <span>// Update DOM</span>
+            function loadSong(song) {
+                title.textContent = song.displayName;
+                artist.textContent = song.artist;
+                music.src = `music/${song.name}.mp3`;
+                image.src = `img/${song.name}.jpg`;
+            }
+            console.log(music);<span>// &lt;audio src=&quot;music/music-1.mp3&quot; &gt;&lt;/audio&gt;</span>
+            console.log(image); <span>// &lt;img src=&quot;img/jacinto-1.jpg&quot; alt=&quot;Album Art&quot;&gt;</span>
+            console.log(music.src) <span>// http://127.0.0.1:5500/templates/music-player/music/music-1.mp3</span>
+        </code></pre>
+
+
     </div>
 
 

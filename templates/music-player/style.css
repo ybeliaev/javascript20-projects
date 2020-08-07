@@ -32,10 +32,15 @@ p {
 }
 .my-wrapper {
     max-width: 1200px;
-    margin: 1rem auto;
+    margin: 1rem auto;  
+    
+}
+.my-wrapper:not(h2){
+  font-size: 18px;
 }
 .my-wrapper pre {
-    background-color: rgba(255, 240, 174, 0.342);
+    background-color: rgba(176, 252, 205, 0.5);
+    padding-right: 2rem;
 }
 .my-wrapper pre code {
     background-color: transparent;
@@ -73,15 +78,15 @@ code span {
     color: rgb(3, 60, 182);
     font-weight: 600;
 }
-a.link {
+a.link {  
   margin-right: 25px;
-  color: var(--primary-color);
+  color: rgb(3, 60, 182);
   text-decoration: none;
   border-bottom: 3px solid transparent;
-  font-weight: 600;
+  font-weight: 600;  
 }
 a.link:hover {
-    color: var(--on-background);
+    color: #be4c37;
     border-bottom: 3px solid;
 }
 /* ===================CONTENT======================== */
@@ -90,6 +95,7 @@ body {
     min-height: 100vh;
     background: #c9ced3;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: Spartan, sans-serif;
