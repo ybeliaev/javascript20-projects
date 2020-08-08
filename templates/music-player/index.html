@@ -14,7 +14,7 @@
     <div class="player-container">
         <!-- Song -->
         <div class="img-container">
-            <img src="img/jacinto-1.jpg" alt="Album Art">
+            <img src="img/music-1.jpg" alt="Album Art">
         </div>
         <h2 id="title">Electric Chill Machine</h2>
         <h3 id="artist">Jorgen</h3>
@@ -158,18 +158,67 @@
         }
         </code></pre>
         <pre><code>
-            // Update Progress Bar & Time
+            <span>// Update Progress Bar & Time</span>
         function updateProgressBar(e){
             if(isPlaying){
                 const {duration, currentTime} = e.srcElement; 
-                // Update progress bar width
+                <span>// Update progress bar width</span>
                 const progressPercent = (currentTime / duration) * 100;
                 console.log(progressPercent)   
                 <span class="excretion">progress.style.width = `${progressPercent}%`</span>  
             }  
         }
         </code></pre>
-
+        <h2>Установка времени.</h2>
+        <p>Получить текущеезначение и общую продолжительность</p>
+        <pre><code>
+        const currentTimeEl = document.getElementById('current-time');
+        const durationEl = document.getElementById('duration');
+        </code></pre>
+        <a href="https://ru.onlinemschool.com/math/assistance/number_theory/modulo/">Калькулятор остатка от деления</a>
+        <pre><code>
+        function updateProgressBar(e){
+            if(isPlaying){
+                const {duration, currentTime} = e.srcElement; 
+                <span>// Update progress bar width</span>
+                const progressPercent = (currentTime / duration) * 100;      
+                progress.style.width = `${progressPercent}%`;
+                <span>//Calculate duration</span>
+                const durationMinutes = Math.floor(duration / 60);
+                const durationSeconds = Math.floor(duration % 60);
+                if(durationSeconds < 10){
+                durationSeconds = `0${durationSeconds}`;
+                }
+                console.log("min: ", durationMinutes)
+                console.log("sec: ", durationSeconds)
+            }  
+            }
+        </code></pre>
+        <p>Теперь вывести на экран:</p>
+        <pre><code>
+        function updateProgressBar(e){
+            if(isPlaying){
+                let {duration, currentTime} = e.srcElement; 
+                <span>// Update progress bar width</span>
+                let progressPercent = (currentTime / duration) * 100;      
+                progress.style.width = `${progressPercent}%`;
+                <span>//Calculate duration</span>
+                let durationMinutes = Math.floor(duration / 60);
+                if (durationMinutes < 10) {
+                    durationMinutes = `0${durationMinutes}`;
+                }
+                let durationSeconds = Math.floor(duration % 60);
+                if(durationSeconds < 10){
+                    durationSeconds = `0${durationSeconds}`;
+                }    
+                <span>// Delay switching duration Element to avoid NaN</span>
+                if (durationSeconds) {
+                    durationEl.textContent = `${durationMinutes}:${durationSeconds}`;
+                }
+            }  
+        }
+        </code></pre>
+        <p><code>durationEl</code> это <code>&lt;span id=&quot;duration&quot;&gt;2:06&lt;/span&gt;</code></p>
 
     </div>
 

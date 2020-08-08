@@ -88,11 +88,23 @@ function nextSong(){
 // Update Progress Bar & Time
 function updateProgressBar(e){
   if(isPlaying){
-    const {duration, currentTime} = e.srcElement; 
+    let {duration, currentTime} = e.srcElement; 
     // Update progress bar width
-    const progressPercent = (currentTime / duration) * 100;
-    console.log(progressPercent)   
-    progress.style.width = `${progressPercent}%`
+    let progressPercent = (currentTime / duration) * 100;      
+    progress.style.width = `${progressPercent}%`;
+    //Calculate duration
+    let durationMinutes = Math.floor(duration / 60);
+    if (durationMinutes < 10) {
+      durationMinutes = `0${durationMinutes}`;
+    }
+    let durationSeconds = Math.floor(duration % 60);
+    if(durationSeconds < 10){
+      durationSeconds = `0${durationSeconds}`;
+    }    
+    // Delay switching duration Element to avoid NaN
+    if (durationSeconds) {
+      durationEl.textContent = `${durationMinutes}:${durationSeconds}`;
+    }
   }  
 }
 
