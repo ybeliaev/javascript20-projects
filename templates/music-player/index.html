@@ -80,6 +80,95 @@
             console.log(image); <span>// &lt;img src=&quot;img/jacinto-1.jpg&quot; alt=&quot;Album Art&quot;&gt;</span>
             console.log(music.src) <span>// http://127.0.0.1:5500/templates/music-player/music/music-1.mp3</span>
         </code></pre>
+        <p>Теперь запустить функцию, и песня заиграет:</p>
+        <pre><code>
+            loadSong(songs[2])
+        </code></pre>
+        <h2>События на пред. и след. композиции.</h2>
+        <pre><code>
+        prevBtn.addEventListener('click', prevSong);
+        nextBtn.addEventListener('click', nextSong);
+        </code></pre>
+        <p>Теперь сами функции <code>prevSong</code> и <code>nextSong</code></p>
+        <pre><code>
+        <span>// Current Song</span>
+        let songIndex = 0;
+
+        <span>// Previous Song</span>
+        function prevSong() {
+        songIndex--;
+        if (songIndex < 0) {
+            songIndex = songs.length - 1;
+        }
+        loadSong(songs[songIndex]);
+        playSong();
+        }
+
+        <span>// Next Song</span>
+        function nextSong() {
+        songIndex++;
+        if (songIndex > songs.length - 1) {
+            songIndex = 0;
+        }
+        loadSong(songs[songIndex]);
+        playSong();
+        }
+        </code></pre>
+        <p><code>loadSong(songs[2])</code>, разумеется, уже не нужна.</p>
+        <h2>Progress Bar.</h2>
+        <div class="alert">
+            <p>Событие <code>timeupdate</code> запускается, когда время, указанное атрибутом currentTime, было обновлено.</p>            
+        </div>
+        <p>Добавить </p>
+        <pre><code>
+        const progress = document.getElementById('progress');
+        const progressContainer = document.getElementById('progress-container');
+
+        <span>// Update Progress Bar & Time</span>
+        function updateProgressBar(e){
+            if(isPlaying){
+                console.log(e)
+            }
+        }
+
+        <span>// Event Listeners</span>
+        prevBtn.addEventListener('click', prevSong);
+        nextBtn.addEventListener('click', nextSong);
+        <span class="excretion">music.addEventListener('timeupdate', updateProgressBar);</span>
+        </code></pre>
+        <p>В объекте <code>event</code> своство <code>srcElement</code> имеет ряд ключей. Нас интересует свойство <code>currentTime</code> и <code>duration</code> поэтому используя деструктуризацию:</p>
+        <pre><code>
+        <span>// Update Progress Bar & Time</span>
+        function updateProgressBar(e){
+            if(isPlaying){
+                const{duration, currentTime} = e.srcElement;
+                console.log(duration, currentTime)
+            }
+        }
+        </code></pre>
+        <p>Преобразую в </p>
+        <pre><code>         
+        function updateProgressBar(e){
+            if(isPlaying){
+                const {duration, currentTime} = e.srcElement; 
+                <span>// Update progress bar width</span>
+                const progressPercent = (currentTime / duration) * 100;
+                console.log(progressPercent)   
+            }  
+        }
+        </code></pre>
+        <pre><code>
+            // Update Progress Bar & Time
+        function updateProgressBar(e){
+            if(isPlaying){
+                const {duration, currentTime} = e.srcElement; 
+                // Update progress bar width
+                const progressPercent = (currentTime / duration) * 100;
+                console.log(progressPercent)   
+                <span class="excretion">progress.style.width = `${progressPercent}%`</span>  
+            }  
+        }
+        </code></pre>
 
 
     </div>

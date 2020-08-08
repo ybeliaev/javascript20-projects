@@ -57,6 +57,9 @@ code span {
     color: rgb(45, 45, 248);
     font-style: italic;
 }
+code span.excretion{
+  color: #ff4800;
+}
 /* image-container */
 .my-img-container {
     margin: 10px 5%;

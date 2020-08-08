@@ -16,17 +16,17 @@ const nextBtn = document.getElementById('next');
 const songs = [
     {
       name: 'music-1',
-      displayName: 'Depeche_Mode - Dangerous',
-      artist: 'Depeche_Mode',
+      displayName: 'Dangerous',
+      artist: 'Depeche Mode',
     },
     {
       name: 'music-2',
-      displayName: 'Depeche_Mode - happiest girl',
-      artist: 'Depeche_Mode',
+      displayName: 'Happiest girl',
+      artist: 'Depeche Mode',
     },
     {
-      name: 'jacinto-3',
-      displayName: 'duran-duran - ordinary world',
+      name: 'music-3',
+      displayName: 'Ordinary world',
       artist: 'Duran-Duran',
     },
     {
@@ -62,4 +62,42 @@ function loadSong(song) {
     music.src = `music/${song.name}.mp3`;
     image.src = `img/${song.name}.jpg`;
 }
-  
+
+// Current song
+let songIndex = 0;
+
+// Previous Song
+function prevSong(){
+  songIndex--;
+  if(songIndex < 0){
+    songIndex = songs.length - 1
+  }
+  loadSong(songs[songIndex])
+  playSong()
+}
+//Next Song
+function nextSong(){
+  songIndex++;
+  if(songIndex > songs.length - 1){
+    songIndex = 0
+  }
+  loadSong(songs[songIndex])
+  playSong()
+}
+
+// Update Progress Bar & Time
+function updateProgressBar(e){
+  if(isPlaying){
+    const {duration, currentTime} = e.srcElement; 
+    // Update progress bar width
+    const progressPercent = (currentTime / duration) * 100;
+    console.log(progressPercent)   
+    progress.style.width = `${progressPercent}%`
+  }  
+}
+
+
+// Event Listeners
+prevBtn.addEventListener('click', prevSong);
+nextBtn.addEventListener('click', nextSong);
+music.addEventListener('timeupdate', updateProgressBar);
