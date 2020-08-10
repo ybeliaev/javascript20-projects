@@ -243,7 +243,7 @@
         function setProgressBar(e) {
             console.log(e)
         }
-        <span>получю событие мыши</span>
+        <span>получю событие мыши event со свойством <code>offsetX</code> показывающим реальное место клика мыши по оси <code>X</code></span>
         </code></pre>
         <div class="alert">
             <p>В событии <code>this</code> относится к элементу, получившему событие.</p>
@@ -256,6 +256,24 @@
                 console.log(width) <span>// покажет ширину полосы в пикселях</span>
               }
         </code></pre>
+        <p>Добавить работу со свойством <code>offsetX</code></p>
+        <pre><code>
+            function setProgressBar(e) {
+            let width = this.clientWidth;
+            let clickX = e.offsetX
+            console.log(clickX)
+        }
+        </code></pre>
+        <p>Конечный вид</p>
+        <pre><code>
+        function setProgressBar(e) {
+            const width = this.clientWidth;
+            const clickX = e.offsetX;
+            const { duration } = music;
+            music.currentTime = (clickX / width) * duration;
+        }
+        </code></pre>
+
 
     </div>
 
