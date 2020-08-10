@@ -276,7 +276,9 @@
             music.currentTime = (clickX / width) * duration;
         }
         </code></pre>
-
+        <h2>Событие <code>ended</code></h2>
+        <p>Возвращает <code>true</code> или <code>false</code>, закончилось ли воспроизведение аудио / видео. </p>
+        <p>Поэтому, если добавить <code>music.addEventListener('ended', nextSong);</code>, то автоматом запустится следующая песня.</p>
 
     </div>
 
