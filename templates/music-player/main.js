@@ -120,6 +120,7 @@ function updateProgressBar(e){
 }
 // Set Progress Bar
 function setProgressBar(e) {
+  console.log(e);
   let width = this.clientWidth;
   let clickX = e.offsetX;
   let {duration} = music;
