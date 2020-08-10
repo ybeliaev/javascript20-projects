@@ -105,11 +105,27 @@ function updateProgressBar(e){
     if (durationSeconds) {
       durationEl.textContent = `${durationMinutes}:${durationSeconds}`;
     }
+    //Calculate for current
+    let currentMinutes = Math.floor(currentTime / 60);    
+    if (currentMinutes < 10) {
+      currentMinutes = `0${currentMinutes}`;
+    }
+    let currentSeconds = Math.floor(currentTime % 60);
+    if(currentSeconds < 10){
+      currentSeconds = `0${currentSeconds}`;
+    } 
+    currentTimeEl.textContent = `${currentMinutes}:${currentSeconds}`;
+    
   }  
 }
-
+// Set Progress Bar
+function setProgressBar(e) {
+  let width = this.clientWidth;
+  console.log(width)
+}
 
 // Event Listeners
 prevBtn.addEventListener('click', prevSong);
 nextBtn.addEventListener('click', nextSong);
 music.addEventListener('timeupdate', updateProgressBar);
+progressContainer.addEventListener('click', setProgressBar)

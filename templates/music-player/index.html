@@ -219,6 +219,43 @@
         }
         </code></pre>
         <p><code>durationEl</code> это <code>&lt;span id=&quot;duration&quot;&gt;2:06&lt;/span&gt;</code></p>
+        <p>Осталось вывести текущее время</p>
+        <p>Просто копирую блок с <code>duration..</code> и меняю на <code>current</code></p>
+        <pre><code>
+            <span>//Calculate for current</span>
+        let currentMinutes = Math.floor(currentTime / 60);    
+        if (currentMinutes < 10) {
+        currentMinutes = `0${currentMinutes}`;
+        }
+        let currentSeconds = Math.floor(currentTime % 60);
+        if(currentSeconds < 10){
+        currentSeconds = `0${currentSeconds}`;
+        }
+        currentTimeEl.textContent = `${currentMinutes}:${currentSeconds}`;
+        </code></pre>
+        <h2>Set Progress Bar</h2>
+        <pre><code>
+        progressContainer.addEventListener('click', setProgressBar)
+        </code></pre>
+        <p>Сама функция</p>
+        <pre><code>
+            <span>// Set Progress Bar</span>
+        function setProgressBar(e) {
+            console.log(e)
+        }
+        <span>получю событие мыши</span>
+        </code></pre>
+        <div class="alert">
+            <p>В событии <code>this</code> относится к элементу, получившему событие.</p>
+            <a href="https://www.w3schools.com/js/js_this.asp" class="link">About this</a>
+        </div>
+        <p>Поэтому можно написать так:</p>
+        <pre><code>
+            function setProgressBar(e) {
+                let width = this.clientWidth;
+                console.log(width) <span>// покажет ширину полосы в пикселях</span>
+              }
+        </code></pre>
 
     </div>
 
