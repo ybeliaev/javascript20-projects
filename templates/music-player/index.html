@@ -279,7 +279,10 @@
         <h2>Событие <code>ended</code></h2>
         <p>Возвращает <code>true</code> или <code>false</code>, закончилось ли воспроизведение аудио / видео. </p>
         <p>Поэтому, если добавить <code>music.addEventListener('ended', nextSong);</code>, то автоматом запустится следующая песня.</p>
-
+        <div class="alert">
+            <a href="https://developer.mozilla.org/ru/docs/Web/API/Node/textContent" class="link">Node.textContent</a>
+            <p>Интресно, что при использовании <code>textContent</code> в отличии от <code>innerText</code> при одинаковом значении не будет перерисовки( чтобы этот эффект увидеть в отладчике - <code> "три точки"->more tools->rendering</code> + тыцнуть <code>Paint flashing</code>. В дальнейшем, эта панель вызывается эскейпом)</p>
+        </div>
     </div>
 
 

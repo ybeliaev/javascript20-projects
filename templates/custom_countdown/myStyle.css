@@ -1,0 +1,82 @@
+
+h1,
+h2,
+h3 {
+    text-align: center;
+    color: #222222;
+    font-family: sans-serif;
+}
+
+p {
+    text-align: left;
+}
+.my-container {
+  height: 100vh;
+  width: 100vh;   
+  /* background: url('./robot.gif'); */
+  background-size: contain;
+  background-position: left center;
+  background-repeat: no-repeat;
+}
+.my-wrapper {
+    max-width: 1200px;
+    margin: 1rem auto;  
+    
+}
+.my-wrapper:not(h2){
+  font-size: 18px;
+}
+.my-wrapper pre {
+    background-color: rgba(176, 252, 205, 0.5);
+    padding-right: 2rem;
+}
+.my-wrapper pre code {
+    background-color: transparent;
+}
+code {
+    line-height: 1.5;
+    background-color: rgba(255, 240, 174, 0.342);
+    padding: 3px;
+    padding-bottom: 3px;
+    color: rgb(22, 22, 22);
+    font-size: 1.3rem;
+}
+code span {
+    color: rgb(45, 45, 248);
+    font-style: italic;
+}
+code span.excretion{
+  color: #ff4800;
+}
+/* image-container */
+.my-img-container {
+    margin: 10px 5%;
+}
+
+.my-img-container img {
+    width: 100%;
+    height: auto;
+    margin-top: 5px;
+}
+.alert{
+    padding: 5px;
+    background-color: rgb(222, 243, 255);
+    border-left: 7px solid rgb(255, 145, 0);
+    color: rgb(22, 22, 22);
+    margin-bottom: 8px;
+}
+.alert code{
+    color: rgb(3, 60, 182);
+    font-weight: 600;
+}
+a.link {  
+  margin-right: 25px;
+  color: rgb(3, 60, 182);
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  font-weight: 600;  
+}
+a.link:hover {
+    color: #be4c37;
+    border-bottom: 3px solid;
+}
