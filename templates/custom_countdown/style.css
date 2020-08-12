@@ -1,8 +1,12 @@
 @import url("./reset.css");
 @import url("./fonts.css");
 @import url("./myStyle.css");
+body{
+  /* overflow-y: hidden; */
+}
 
-body {
+.wrapper {
+  position: relative; 
   min-height: 100vh;
   overflow-y: hidden;
   display: flex;
@@ -37,17 +41,31 @@ video {
 
 /* Container */
 .container {
+  position: relative;  
   min-width: 580px;
   min-height: 304px;
   color: black;
-  margin: 0 auto;
+  margin: 7em auto;
   padding: 25px 50px;
   border-radius: 5px;
-  z-index: 2;
-  background: rgba(255, 255, 255, 0.85);
+  z-index: 2;  
   display: flex;
   justify-content: center;
+  background: inherit;
 }
+.container::before{
+  content: "";
+  position: absolute;
+  top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0; 
+  background: inherit;
+  box-shadow: inset 0 0 5000px rgba(255, 255, 255, .5);  
+  filter: blur(3px);
+  margin: -20px;
+}
+
 
 .input-container {
   position: relative;

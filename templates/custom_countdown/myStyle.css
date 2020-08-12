@@ -19,9 +19,13 @@ p {
   background-repeat: no-repeat;
 }
 .my-wrapper {
+    position: absolute;
+    top: 100vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
     max-width: 1200px;
-    margin: 1rem auto;  
-    
+    margin: 15rem auto;  
+    z-index: 10;
 }
 .my-wrapper:not(h2){
   font-size: 18px;
