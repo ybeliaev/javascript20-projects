@@ -20,11 +20,11 @@ p {
 }
 .my-wrapper {
     position: absolute;
-    top: 100vh;
+    top: 170vh;
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 1200px;
-    margin: 15rem auto;  
+    /* margin: 15rem auto;   */
     z-index: 10;
 }
 .my-wrapper:not(h2){
@@ -75,6 +75,7 @@ code span.excretion{
 }
 a.link {  
   margin-right: 25px;
+  text-transform: uppercase;
   color: rgb(3, 60, 182);
   text-decoration: none;
   border-bottom: 3px solid transparent;

@@ -59,8 +59,22 @@
         const inputContainer = document.getElementById('input-container');
         const dateEl = document.getElementById('date-picker');
         </code></pre>
-        <h3>Про элемент input type="date"</h3>
-        <a href="https://developer.mozilla.org/uk/docs/Web/HTML/Element/input/date" class="link">MDN</a>
+        <h3>Про элемент DATE</h3>
+        <a href="https://developer.mozilla.org/uk/docs/Web/HTML/Element/input/date" class="link">MDN about input type="date"</a>
+        <a class="link" href="https://www.w3schools.com/jsref/jsref_obj_date.asp">w3schools about date object</a>
+        <div class="alert">
+            <p>Метод <code>toISOString()</code> возвращает строку в формате ISO (расширенный формат ISO 8601), который можно описать следующим образом: <code>YYYY-MM-DDTHH:mm:ss.sssZ.</code></p>
+        </div>
+        <pre><code>
+        let today = new Date().toISOString().split("T")
+        console.log(today)<span>// ["2020-08-17", "10:39:10.775Z"]</span>
+        </code></pre>
+        <p>Поэтому:</p>
+        <pre><code>
+        <span>// Set Date Input Min & Value with Today's Date</span>
+        const today = new Date().toISOString().split('T')[0];
+        dateEl.setAttribute('min', today);
+        </code></pre>
     </div>
 
 

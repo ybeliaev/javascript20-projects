@@ -1,14 +1,17 @@
 console.log("work custom countdown");
 
-const countdownForm = document.getElementById('countdownForm');
-const inputContainer = document.getElementById('input-container');
-const dateEl = document.getElementById('date-picker');
+let countdownForm = document.getElementById('countdownForm');
+let inputContainer = document.getElementById('input-container');
+let dateEl = document.getElementById('date-picker');
 
-const countdownEl = document.getElementById('countdown');
-const countdownElTitle = document.getElementById('countdown-title');
-const countdownBtn = document.getElementById('countdown-button');
-const timeElements = document.querySelectorAll('span');
+let countdownEl = document.getElementById('countdown');
+let countdownElTitle = document.getElementById('countdown-title');
+let countdownBtn = document.getElementById('countdown-button');
+let timeElements = document.querySelectorAll('span');
 
-const completeEl = document.getElementById('complete');
-const completeElInfo = document.getElementById('complete-info');
-const completeBtn = document.getElementById('complete-button');
+let completeEl = document.getElementById('complete');
+let completeElInfo = document.getElementById('complete-info');
+let completeBtn = document.getElementById('complete-button');
+
+let today = new Date().toISOString().split("T")
+console.log(today)
