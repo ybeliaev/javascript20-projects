@@ -75,6 +75,41 @@
         const today = new Date().toISOString().split('T')[0];
         dateEl.setAttribute('min', today);
         </code></pre>
+        <h2>Form value</h2>
+        <p>На элемент <code>form</code> вешаю событие</p>
+        <pre><code>
+        <span>// Take value from Input</span>
+        function updateCountdown(e) {
+            e.preventDefault();
+            console.log(e)
+        }
+        <span>// Event Listener</span>
+        countdownForm.addEventListener('submit', updateCountdown);
+        </code></pre>
+        <p>У <code>event</code> покажет свойство <code>srcElement</code> в котором ключи  - элементы формы: </p>
+        <pre><code>
+        0: input#title
+        1: input#date-picker
+        2: button
+        </code></pre>
+        <p>Поэтому ввожу переменные  <code>countdownTitle = "";  countdownDate = "";</code></p>
+        <pre><code>
+        function updateCountdown(e) {
+            e.preventDefault();
+            <span>// Set title and date, save to localStorage</span>
+            countdownTitle = e.srcElement[0].value;
+            countdownDate = e.srcElement[1].value;
+            savedCountdown = {
+                title: countdownTitle,
+                date: countdownDate,
+            };
+            localStorage.setItem('countdown', JSON.stringify(savedCountdown));
+        }
+        </code></pre>
+        <div class="alert">
+            <p>Метод <code>JSON.stringify()</code> берёт объект и преобразует его в строку.</p>
+        </div>
+
     </div>
 
 

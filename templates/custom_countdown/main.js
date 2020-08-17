@@ -13,5 +13,23 @@ let completeEl = document.getElementById('complete');
 let completeElInfo = document.getElementById('complete-info');
 let completeBtn = document.getElementById('complete-button');
 
+let countdownTitle = "";
+let countdownDate = "";
+
+// Set Date Input Min & Value with Today's Date
 let today = new Date().toISOString().split("T")
-console.log(today)
+dateEl.setAttribute("min", today)
+
+// Take value from Input
+function updateCountdown(e) {
+    e.preventDefault();
+    countdownTitle = e.srcElement[0].value;
+    countdownDate  = e.srcElement[1].value;
+    savedCountdown = {
+        title: countdownTitle,
+        date: countdownDate,
+      };
+      localStorage.setItem('countdown', JSON.stringify(savedCountdown));
+}
+// Event Listener
+countdownForm.addEventListener('submit', updateCountdown);
