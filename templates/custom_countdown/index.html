@@ -109,6 +109,34 @@
         <div class="alert">
             <p>Метод <code>JSON.stringify()</code> берёт объект и преобразует его в строку.</p>
         </div>
+        <div class="alert">
+            <p>Объекты <code>Date</code> основываются на значении количества <strong>миллисекунд</strong>, прошедших с 1 января 1970 года в часовом поясе UTC.</p>
+        </div>
+        <div class="alert">
+            <p>Значение, возвращаемое методом <code>getTime</code>, равно количеству миллисекунд, прошедших с полуночи 1 января 1970 года GMT. Этот метод можно использовать для присвоения значения другому объекту <code>Date</code>.</p>
+        </div>
+        <p>Ввожу новую переменную...</p>
+        <pre><code>
+            let countdownValue ;
+    <span>//Автор пишет countdownValue = Date вероятно чтобы было видно к чему относится переменная</span>
+    function updateCountdown(e) {
+        e.preventDefault();
+        countdownTitle = e.srcElement[0].value;
+        countdownDate  = e.srcElement[1].value;
+        savedCountdown = {
+            title: countdownTitle,
+            date: countdownDate,
+          };
+          localStorage.setItem('countdown', JSON.stringify(savedCountdown));
+          <span class="excretion">if(countdownValue === ""){
+            alert("Please select of current data")
+          }else{
+            countdownValue = new Date(countdownDate).getTime();
+            console.log(countdownValue)
+          }</span>    }
+        </code></pre>
+        <h2>Вывод данных на страницу (countdawn UI)</h2>
+
 
     </div>
 

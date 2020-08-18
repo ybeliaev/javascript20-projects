@@ -15,6 +15,8 @@ let completeBtn = document.getElementById('complete-button');
 
 let countdownTitle = "";
 let countdownDate = "";
+let countdownValue ;
+
 
 // Set Date Input Min & Value with Today's Date
 let today = new Date().toISOString().split("T")
@@ -30,6 +32,12 @@ function updateCountdown(e) {
         date: countdownDate,
       };
       localStorage.setItem('countdown', JSON.stringify(savedCountdown));
+      if(countdownValue === ""){
+        alert("Please select of current data")
+      }else{
+        countdownValue = new Date(countdownDate).getTime();
+        console.log(countdownValue)
+      }
 }
 // Event Listener
 countdownForm.addEventListener('submit', updateCountdown);
