@@ -16,6 +16,7 @@ let completeBtn = document.getElementById('complete-button');
 let countdownTitle = "";
 let countdownDate = "";
 let countdownValue;
+let countdownActive;
 
 let second = 1000;
 let minute = second * 60;
@@ -29,7 +30,8 @@ dateEl.setAttribute("min", today)
 
 // Populate Countdown / Complete UI
 function updateDOM(){
-  let now = new Date().getTime()
+  setInterval(() => {
+    let now = new Date().getTime()
   let distance = countdownValue - now
   let days = Math.floor(distance/day)
   let hours = Math.floor((days % 24) / hour)
@@ -46,6 +48,8 @@ function updateDOM(){
   // Show Countdown
   completeEl.hidden = true;
   countdownEl.hidden = false;
+  }, 1000)
+  
 }
 
 

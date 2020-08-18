@@ -189,6 +189,36 @@
             }
         <span>Ввести данные и нажать submit</span>
         </code></pre>
+        <h2>SetInterval & clearInterval</h2>
+        <p>Нужно реализовать изменение данных в UI</p>
+        <a href="https://learn.javascript.ru/settimeout-setinterval" class="link">setTimeout & setInterval & clearInterval</a>
+        <pre><code>
+        let countdownActive;
+        <span>обернуть данные в ф-ии в setInterval:</span>
+        function updateDOM(){
+            setInterval(() => {
+              let now = new Date().getTime()
+            let distance = countdownValue - now
+            let days = Math.floor(distance/day)
+            let hours = Math.floor((days % 24) / hour)
+            let minutes = Math.floor((distance % hour) / minute)
+            let seconds = Math.floor((distance % minute) / second)
+            <span>// Populate Countdown</span>  
+            completeElInfo.textContent = `${countdownTitle}`;
+            timeElements[0].textContent = `${days}`
+            timeElements[1].textContent = `${hours}`
+            timeElements[2].textContent = `${minutes}`
+            timeElements[3].textContent = `${seconds}`
+            <span>// Hide Input</span>
+            inputContainer.hidden = true;
+            <span>// Show Countdown</span>
+            completeEl.hidden = true;
+            countdownEl.hidden = false;
+            }, 1000)
+            
+          }  
+        </code></pre>
+        <p>Ну, часики тикают!</p>
 
 
     </div>
