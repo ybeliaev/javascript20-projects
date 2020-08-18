@@ -123,17 +123,10 @@
         e.preventDefault();
         countdownTitle = e.srcElement[0].value;
         countdownDate  = e.srcElement[1].value;
-        savedCountdown = {
-            title: countdownTitle,
-            date: countdownDate,
-          };
-          localStorage.setItem('countdown', JSON.stringify(savedCountdown));
-          <span class="excretion">if(countdownValue === ""){
-            alert("Please select of current data")
-          }else{
-            countdownValue = new Date(countdownDate).getTime();
-            console.log(countdownValue)
-          }</span>    }
+
+        countdownValue = new Date(countdownDate).getTime();
+        
+          }</span>    
         </code></pre>
         <h2>Вывод данных на страницу (countdawn UI)</h2>
         <pre><code>
@@ -146,7 +139,6 @@
         <pre><code>
         function updateCountdown(e) {
             ..
-            else{
                 countdownValue = new Date(countdownDate).getTime();
                 <strong>updateDOM()</strong>
                 }
@@ -193,10 +185,10 @@
         <p>Нужно реализовать изменение данных в UI</p>
         <a href="https://learn.javascript.ru/settimeout-setinterval" class="link">setTimeout & setInterval & clearInterval</a>
         <pre><code>
-        let countdownActive;
+        let countdownActive; <span>для последующего сброса setInterval</span>
         <span>обернуть данные в ф-ии в setInterval:</span>
         function updateDOM(){
-            setInterval(() => {
+            countdownActive = setInterval(() => {
               let now = new Date().getTime()
             let distance = countdownValue - now
             let days = Math.floor(distance/day)
@@ -214,13 +206,90 @@
             <span>// Show Countdown</span>
             completeEl.hidden = true;
             countdownEl.hidden = false;
-            }, 1000)
+            }, second)
             
           }  
         </code></pre>
         <p>Ну, часики тикают!</p>
+        <p>Реализация функционала кнопки reset</p>
+        <pre><code>countdownBtn.addEventListener("click", reset)</code></pre>
+        <p>Сама ф-ия</p>
+        <pre><code>
+        function reset() {
+            // Hide countdowns, show input form
+            countdownEl.hidden = true;
+            
+            inputContainer.hidden = false;
+            // Stop the countdown
+            clearInterval(countdownActive);
+            // Reset values, remove localStorage item
+            countdownTitle = '';
+            countdownDate = '';            
+        }
+        </code></pre>
+        <p>Теперь нужно исправить то, что при не введении данных и последующим нажатием <code>SUBMIT</code> будет расчёт данных и выведет <code>NaN</code></p>
+        <pre><code>
+        function updateCountdown(e) {
+            e.preventDefault();
+            countdownTitle = e.srcElement[0].value;
+            countdownDate  = e.srcElement[1].value;
+            <span>// Check for valid data</span>
+                if(countdownDate === ""){
+                alert("Please select of current data")
+                }else{
+                countdownValue = new Date(countdownDate).getTime();
+                updateDOM()
+                }
+        }
+        </code></pre>
+        <h2>Finishing UI</h2>
+        <pre><code>
+        let completeEl = document.getElementById('complete');
+        let completeElInfo = document.getElementById('complete-info');
+        let completeBtn = document.getElementById('complete-button');   
+        </code></pre>
+        <code>
+            <pre>
+            function updateDOM(){
+                countdownActive = setInterval(
+                .. 
+                let seconds = Math.floor((distance % minute) / second)
 
+                <span>// Hide Input</span>
+                inputContainer.hidden = true;
 
+                <span>// If the cowntdown has ended show complite</span>
+                if(distance < 0){
+                    countdownEl.hidden
+                    clearInterval(countdownActive)
+                    completeElInfo.textContent = `${countdownTitle} finished on ${countdownDate}`
+                    completeEl.hidden = false;
+                    }else{
+                    completeElInfo.textContent = `${countdownTitle}`;
+                    timeElements[0].textContent = `${days}`
+                    timeElements[1].textContent = `${hours}`
+                    timeElements[2].textContent = `${minutes}`
+                    timeElements[3].textContent = `${seconds}`
+                    completeEl.hidden = true
+                    countdownEl.hidden = false
+                }
+            }, second)
+
+            </pre>
+        </code>
+        <p>Теперь выбрать сегодняшнюю дату чтобы данные были меньше нуля и посмотреть результат</p>
+        <p>Теперь реализовать кнопку newcountdown</p>
+        <pre><code>completeBtn.addEventListener("click", reset)</code></pre>
+        <pre><code>
+        function reset() {
+            <span>// Hide countdowns, show input form</span>
+            countdownEl.hidden = true;
+            <strong>completeEl.hidden = true;</strong>
+            inputContainer.hidden = false;
+            ..
+        }
+        </code></pre>
+        <p>теперь сброс работает</p>
     </div>
 
 

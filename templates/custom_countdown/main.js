@@ -30,29 +30,35 @@ dateEl.setAttribute("min", today)
 
 // Populate Countdown / Complete UI
 function updateDOM(){
-  setInterval(() => {
+  countdownActive = setInterval(() => {
     let now = new Date().getTime()
-  let distance = countdownValue - now
-  let days = Math.floor(distance/day)
-  let hours = Math.floor((days % 24) / hour)
-  let minutes = Math.floor((distance % hour) / minute)
-  let seconds = Math.floor((distance % minute) / second)
-  // Populate Countdown  
-  completeElInfo.textContent = `${countdownTitle}`;
-  timeElements[0].textContent = `${days}`
-  timeElements[1].textContent = `${hours}`
-  timeElements[2].textContent = `${minutes}`
-  timeElements[3].textContent = `${seconds}`
-  // Hide Input
-  inputContainer.hidden = true;
-  // Show Countdown
-  completeEl.hidden = true;
-  countdownEl.hidden = false;
-  }, 1000)
+    let distance = countdownValue - now
+    let days = Math.floor(distance/day)
+    let hours = Math.floor((days % 24) / hour)
+    let minutes = Math.floor((distance % hour) / minute)
+    let seconds = Math.floor((distance % minute) / second)
+
+    // Hide Input
+    inputContainer.hidden = true;
+
+    // If the cowntdown has ended show complite
+    if(distance < 0){
+      countdownEl.hidden
+      clearInterval(countdownActive)
+      completeElInfo.textContent = `${countdownTitle} finished on ${countdownDate}`
+      completeEl.hidden = false;
+    }else{
+      completeElInfo.textContent = `${countdownTitle}`;
+      timeElements[0].textContent = `${days}`
+      timeElements[1].textContent = `${hours}`
+      timeElements[2].textContent = `${minutes}`
+      timeElements[3].textContent = `${seconds}`
+      completeEl.hidden = true
+      countdownEl.hidden = false
+    }
+  }, second)
   
 }
-
-
 
 // Take value from Input
 function updateCountdown(e) {
@@ -64,12 +70,27 @@ function updateCountdown(e) {
         date: countdownDate,
       };
       localStorage.setItem('countdown', JSON.stringify(savedCountdown));
-      if(countdownValue === ""){
+      if(countdownDate === ""){
         alert("Please select of current data")
       }else{
         countdownValue = new Date(countdownDate).getTime();
         updateDOM()
       }
 }
+
+function reset() {
+  // Hide countdowns, show input form
+  countdownEl.hidden = true;
+  completeEl.hidden = true;
+  inputContainer.hidden = false;
+  // Stop the countdown
+  clearInterval(countdownActive);
+  // Reset values, remove localStorage item
+  countdownTitle = '';
+  countdownDate = '';  
+}
+
 // Event Listener
 countdownForm.addEventListener('submit', updateCountdown);
+countdownBtn.addEventListener("click", reset)
+completeBtn.addEventListener("click", reset)
