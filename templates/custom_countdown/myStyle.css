@@ -19,8 +19,8 @@ p {
   background-repeat: no-repeat;
 }
 .my-wrapper {
-    position: absolute;
-    top: 250vh;
+    position: relative;
+    top: 200vh;
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 1200px;
@@ -51,6 +51,9 @@ code span {
 }
 code span.excretion{
   color: #ff4800;
+}
+code strong{
+    color: rgb(196, 30, 1);
 }
 /* image-container */
 .my-img-container {

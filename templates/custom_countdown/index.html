@@ -11,48 +11,48 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <!-- video background -->
-        <video class="video-background" id="video-background" loop muted autoplay>
-            <source src="./time.mp4"></source>
-        </video>
-        <div class="video-overlay"></div>
-        <!-- Container  -->
-        <div class="container">
-            <!-- Input -->
-            <div class="input-container" id="input-container">
-                <h1>Create a Custom Countdown</h1>
-                <form class="form" id="countdownForm">
-                    <label for="title">Title</label>
-                    <input type="text" id="title" placeholder="What are you counting down to?">
-                    <label for="date-picker">Select a Data</label>
-                    <input type="date" id="date-picker">
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
-            <!-- Countdown  -->
-            <div class="countdown" id="countdown" hidden>
-                <h1 id="countdown-title"></h1>
-                <ul>
-                    <li><span></span>Days</li>
-                    <li><span></span>Hours</li>
-                    <li><span></span>Minutes</li>
-                    <li><span></span>Seconds</li>
-                </ul>
-                <button id="countdown-button">RESET</button>
-            </div>
-            <!-- Complite  -->
-            <div class="complite" id="complite" hidden>
-                <h1 class="complete-title">Countdown Complete!</h1>
-                <h1 id="complete-info"></h1>
-                <button id="complete-button">NEW COUNTDOWN</button>
-            </div>
+    
+        <!-- Video Background -->
+    <video class="video-background" id="video-background" loop muted autoplay>
+        <source src="time.mp4"></source>
+    </video>
+    <div class="video-overlay"></div>
+    <!-- Container -->
+    <div class="container">
+        <!-- Input -->
+        <div class="input-container" id="input-container">
+            <h1>Create a Custom Countdown!</h1>       
+            <form class="form" id="countdownForm">
+                <label for="title">Title</label>
+                <input type="text" id="title" placeholder="What are you counting down to?">
+                <label for="date-picker">Select a Date</label>
+                <input type="date" id="date-picker">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <!-- Countdown -->
+        <div class="countdown" id="countdown" hidden>
+            <h1 id="countdown-title"></h1>
+            <ul>
+                <li><span class="date"></span>Days</li>
+                <li><span class="date"></span>Hours</li>
+                <li><span class="date"></span>Minutes</li>
+                <li><span class="date"></span>Seconds</li>
+            </ul>
+            <button id="countdown-button">RESET</button>
+        </div>
+        <!-- Complete -->
+        <div class="complete" id="complete" hidden>
+            <h1 class="complete-title">Countdown Complete!</h1>
+            <h1 id="complete-info"></h1>
+            <button id="complete-button">NEW COUNTDOWN</button>
         </div>
     </div>
     
     
+    
     <!-- my content -->
-    <div class="my-wrapper">
+    <div class="my-wrapper" hidden>
         <h2>Start</h2>
         <pre><code>
         const countdownForm = document.getElementById('countdownForm');
@@ -136,6 +136,59 @@
           }</span>    }
         </code></pre>
         <h2>Вывод данных на страницу (countdawn UI)</h2>
+        <pre><code>
+        let countdownEl = document.getElementById('countdown');
+        let countdownElTitle = document.getElementById('countdown-title');
+        let countdownBtn = document.getElementById('countdown-button');
+        let timeElements = document.querySelectorAll('span');
+        </code></pre>
+
+        <pre><code>
+        function updateCountdown(e) {
+            ..
+            else{
+                countdownValue = new Date(countdownDate).getTime();
+                <strong>updateDOM()</strong>
+                }
+        }
+        </code></pre>
+        <pre><code>
+        function updateDOM(){
+            let now = new Date().getTime()
+            let distance = countdownValue - now
+            console.log(distance) <span>// разница введённого времени и на данный момент</span>
+            
+            }              
+        </code></pre>
+        <pre><code>
+        const second = 1000; <span>// т.к в 1сек 1000 мс</span>
+        const minute = second * 60;
+        const hour = minute * 60;
+        const day = hour * 24;
+        </code></pre>
+        <p>Теперь вывод данных</p>
+        <pre><code>
+        function updateDOM(){
+            let now = new Date().getTime()
+            let distance = countdownValue - now
+            let days = Math.floor(distance/day)
+            let hours = Math.floor((days % 24) / hour)
+            let minutes = Math.floor((distance % hour) / minute)
+            let seconds = Math.floor((distance % minute) / second)
+            <span>// Populate Countdown</span>  
+            completeElInfo.textContent = `${countdownTitle}`;
+            timeElements[0].textContent = `${days}`
+            timeElements[1].textContent = `${hours}`
+            timeElements[2].textContent = `${minutes}`
+            timeElements[3].textContent = `${seconds}`
+            <span>// Hide Input</span>
+            inputContainer.hidden = true;
+            <span>// Show Countdown</span>
+            completeEl.hidden = true;
+            countdownEl.hidden = false;
+            }
+        <span>Ввести данные и нажать submit</span>
+        </code></pre>
 
 
     </div>
