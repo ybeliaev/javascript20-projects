@@ -75,8 +75,8 @@
         </div>
         <p>Ввожу новую переменную...</p>
         <pre><code>
-            let countdownValue ;
-    <span>//Автор пишет countdownValue = Date вероятно чтобы было видно к чему относится переменная</span>
+            let countdownValue = new Date() ;
+    <span>//Важно показать каие данные будут в переменнои, поэтому присвоил <code>new Date()</code> хотя переменная с этим дефолтным значением не используется нигде</span>
     function updateCountdown(e) {
         e.preventDefault();
         countdownTitle = e.srcElement[0].value;
