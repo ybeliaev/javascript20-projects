@@ -10,7 +10,7 @@
 </head>
 <body>
      <!-- my content -->
-     <div class="my-wrapper" >
+     <div class="wrapper" >
         <h2>Start</h2>
         <pre><code>
         const countdownForm = document.getElementById('countdownForm');
@@ -210,7 +210,7 @@
             <pre>
             function updateDOM(){
                 countdownActive = setInterval(
-                .. 
+                ..
                 let seconds = Math.floor((distance % minute) / second)
 
                 <span>// Hide Input</span>
@@ -248,6 +248,48 @@
         }
         </code></pre>
         <p>теперь сброс работает</p>
+        <h2>Кэширование с localStorage</h2>
+        <p>Ввожу переменную <code>let savedCountdown</code> и вставляю код в ф-ию <code>updateCountdown</code></p>
+        <pre><code>
+        countdownDate = e.srcElement[1].value;
+        <strong>savedCountdown = {
+            title: countdownTitle,
+            date: countdownDate,
+        };
+        localStorage.setItem('countdown', JSON.stringify(savedCountdown));</strong>
+        </code></pre>
+        <pre><code>
+        function reset() {
+            <span>// Hide countdowns, show input form</span>
+            countdownEl.hidden = true;
+            completeEl.hidden = true;
+            inputContainer.hidden = false;
+            <span>// Stop the countdown</span>
+            clearInterval(countdownActive);
+            <span>// Reset values, remove localStorage item</span>
+            countdownTitle = '';
+            countdownDate = '';
+            <strong>localStorage.removeItem('countdown');</strong>
+            }
+        </code></pre>
+        <div class="alert">
+            <p>Чтобы декодировать JSON-строку, нам нужен другой метод с именем <code>JSON.parse</code>.</p>
+        </div>
+        <pre><code>
+        function restorePreviousCountdown() {
+            <span>// Get countdown from localStorage if available</span>
+            if (localStorage.getItem('countdown')) {
+                inputContainer.hidden = true; 
+                savedCountdown = JSON.parse(localStorage.getItem('countdown'));
+                countdownTitle = savedCountdown.title;
+                countdownDate = savedCountdown.date;
+                countdownValue = new Date(countdownDate).getTime();
+                updateDOM();
+            }
+        }
+        </code></pre>
+        <p>И в конце кода запустить эту функцию ,чтобы сработала при загрузке документа</p>
+
     </div>
 </body>
 </html>
