@@ -36,7 +36,7 @@ h1:hover {
   flex-direction: row;
   flex-wrap: wrap;
 }
-
+/* Эти элементы item будем создавать JS */
 .item {
   background: rgba(0, 0, 0, 0.5);
   color: white;
@@ -145,9 +145,9 @@ h3 {
 }
 
 /* Form */
-.form-group {
+/* .form-group {
   height: 55px;
-}
+} */
 
 .form-input {
   width: 97%;
