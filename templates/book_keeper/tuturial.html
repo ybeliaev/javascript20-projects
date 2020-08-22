@@ -34,6 +34,61 @@
         </p>
       </div>
       <p><code>vertical-align: sub</code> к картинке выравняло её со ссылкой</p>
+      <p>
+        Для спрятанного модального окна с <code>display:none</code> приготовлен
+        класс:
+      </p>
+      <pre><code>
+        .show-modal {
+          <strong>display: flex;</strong>
+          align-items: center;
+          justify-content: center;
+        }
+      </code></pre>
+      <p>Вначале плучить все элементы:</p>
+      <pre><code>
+      const modal = document.getElementById('modal');
+      const modalShow = document.getElementById('show-modal');
+      const modalClose = document.getElementById('close-modal');
+      const bookmarkForm = document.getElementById('bookmark-form');
+      const websiteNameEl = document.getElementById('website-name');
+      const websiteUrlEl = document.getElementById('website-url');
+      const bookmarksContainer = document.getElementById('bookmarks-container');
+      </code></pre>
+      <div class="alert">
+        <p>
+          Методы <code>elem.focus()</code> и
+          <code>elem.blur()</code> устанавливают/снимают фокус.
+        </p>
+      </div>
+      <pre><code>
+      function showModal() {
+        modal.classList.add("show-modal");
+        websiteNameEl.focus();
+      }
+      modalShow.addEventListener("click", showModal);
+      modalClose.addEventListener("click", () =>
+        modal.classList.remove("show-modal")
+      );
+      </code></pre>
+      <div class="alert">
+        <p><code>modal.remove("show-modal")</code> удалит сам элемент из DOM</p>
+      </div>
+      <p>
+        Дабавить также событие
+        <code>window.addEventListener("click", (e) => console.log(e));</code>
+      </p>
+      <p>
+        Кликнуть куда-нибудь на документе и посмотреть на свойство
+        <code>target</code>
+      </p>
+      <div class="alert">
+        <p>
+          JavaScript свойство <code>target</code> объекта
+          <code>Event</code> ссылается на объект, который отправил событие.
+          Свойство доступно только для чтения.
+        </p>
+      </div>
 
       <!-- end -->
     </div>
