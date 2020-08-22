@@ -89,6 +89,14 @@
           Свойство доступно только для чтения.
         </p>
       </div>
+      <p>
+        При вызове модального окна и клике за пределами самого окошка получаю
+        <code>target: div#modal.modal-container.show-modal</code>
+      </p>
+      <p>Поэтому</p>
+      <pre><code>
+      window.addEventListener('click', (e) => (e.target === modal ? modal.classList.remove('show-modal') : false));
+      </code></pre>
 
       <!-- end -->
     </div>
