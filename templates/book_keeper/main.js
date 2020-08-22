@@ -21,3 +21,35 @@ modalClose.addEventListener("click", () =>
 window.addEventListener("click", (e) =>
   e.target === modal ? modal.classList.remove("show-modal") : false
 );
+// Validate Form
+function validate(nameValue, urlValue) {
+  let expression = /(https)?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/g;
+  let regex = new RegExp(expression);
+  if (!nameValue || !urlValue) {
+    alert("Please provide a valid web address");
+    return false;
+  }
+  if (!urlValue.match(regex)) {
+    alert("Please provide a valid web address.");
+    return false;
+  }
+  // If valid
+  return true;
+}
+
+// Handle data from form
+function storeBookmark(e) {
+  e.preventDefault();
+  let nameValue = websiteNameEl.value;
+  let urlValue = websiteUrlEl.value;
+  if (urlValue.includes("http://", "https://")) {
+    urlValue = `https://${urlValue}`;
+  }
+  // Validate
+  if (!validate(nameValue, urlValue)) {
+    return false;
+  }
+}
+
+// Event Listener
+bookmarkForm.addEventListener("submit", storeBookmark);

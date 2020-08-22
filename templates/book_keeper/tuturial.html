@@ -80,7 +80,7 @@
       </p>
       <p>
         Кликнуть куда-нибудь на документе и посмотреть на свойство
-        <code>target</code>
+        <code>target</code>. Затем написать <code>console.log(e.target)</code>.
       </p>
       <div class="alert">
         <p>
@@ -95,7 +95,72 @@
       </p>
       <p>Поэтому</p>
       <pre><code>
-      window.addEventListener('click', (e) => (e.target === modal ? modal.classList.remove('show-modal') : false));
+      window.addEventListener('click', (e) => 
+      (e.target === modal ? modal.classList.remove('show-modal') : false));
+      </code></pre>
+      <h2>Валидация формы</h2>
+      <p>
+        <code>bookmarkForm.addEventListener('submit', storeBookmark);</code>
+      </p>
+      <pre><code>
+      <span>// Handle data from form</span>
+      function storeBookmark(e) {
+        e.preventDefault();
+        console.log(websiteNameEl.value, websiteUrlEl.value);
+      }
+      <span>// Event Listener</span>
+      bookmarkForm.addEventListener("submit", storeBookmark);
+      </code></pre>
+      <div class="alert">
+        <p>
+          Метод <code>array.includes()</code> определяет, содержит ли массив
+          определённый элемент, возвращая в зависимости от этого
+          <code>true</code> или <code>false</code>.
+        </p>
+        <p>
+          Метод <code>string.includes()</code> проверяет, содержит ли строка
+          заданную подстроку, и возвращает, соответственно,
+          <code>true</code> или <code>false</code>.
+        </p>
+      </div>
+      <pre><code>
+      function storeBookmark(e) {
+        e.preventDefault();
+        let nameValue = websiteNameEl.value;
+        let urlValue = websiteUrlEl.value;
+        <span>// Инструкция ниже чтобы можно ввести имя хоста без названия протокола</span>
+        if (urlValue.includes("http://", "https://")) {
+          urlValue = `https://${urlValue}`;
+        }
+        <span>//Валидация данных</span>        
+        if (!validate(nameValue, urlValue)) {
+          return false;
+        }
+      }
+      </code></pre>
+      <p>Напишу ф-ию <code>validate(nameValue, urlValue)</code></p>
+      <a
+        href="https://stackoverflow.com/questions/3809401/what-is-a-good-regular-expression-to-match-a-url"
+        class="link"
+        >What is a good regular expression to match a URL</a
+      >
+      <a href="https://regexr.com/" class="link">Онлайн тренажёр</a>
+      <pre><code>
+      function validate(nameValue, urlValue) {
+        let expression = /(https)?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]
+        {1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/g;
+        let regex = new RegExp(expression);
+        if (!nameValue || !urlValue) {
+          alert("Please provide a valid web address");
+          return false;
+        }
+        if (!urlValue.match(regex)) {
+          alert('Please provide a valid web address.');
+          return false;
+        }
+        <span>// If valid</span>
+        return true;
+      }
       </code></pre>
 
       <!-- end -->
