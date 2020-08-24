@@ -243,9 +243,7 @@
         }
       }
       ... 
-
       <strong>function storeBookmark(e)</strong> {
-
       ... 
       <span>// Set bookmarks in localStorage, fetch, reset input fields</span>
       localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
@@ -269,6 +267,43 @@
           "Jorgen", url: "https://www.google.com/"}]
         </p>
         Очистить localStorage и перезагрузить страницу - появится </code>
+        <h2>Создание элементов на странице</h2>
+        <pre><code>
+        function fetchBookmarks() {
+          <span>// Get bookmarks from localStorage if available</span>
+          if (localStorage.getItem("bookmarks")) {
+            bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
+          } else {
+            bookmarks = [
+              {
+                name: "Jorgen",
+                url: "https://www.google.com/",
+              },
+            ];
+            localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+          }
+          <strong>buildBookmarks();</strong>
+        }
+        </code></pre>
+        <p>Создание самой функции</p>
+        <pre><code>
+        <span>// Build Bookmarks DOM</span>
+        function buildBookmarks() {
+        <span>// Build items</span>
+          bookmarks.forEach((bookmark) => {
+            const { name, url } = bookmark;
+            console.log(name, url);
+          });
+        }
+        </code></pre>
+        <p>Введи данные и глянь консоль</p>
+
+
+
+
+
+        
+
       <!-- end -->
     </div>
   </body>

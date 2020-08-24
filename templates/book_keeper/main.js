@@ -39,6 +39,15 @@ function validate(nameValue, urlValue) {
   return true;
 }
 
+// Build Bookmarks DOM
+function buildBookmarks() {
+  // Build items
+  bookmarks.forEach((bookmark) => {
+    const { name, url } = bookmark;
+    console.log(name, url);
+  });
+}
+
 // Fetch Bookmarks
 function fetchBookmarks() {
   // Get bookmarks from localStorage if available
@@ -53,6 +62,7 @@ function fetchBookmarks() {
     ];
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   }
+  buildBookmarks();
 }
 
 // Handle data from form
