@@ -162,6 +162,45 @@
         return true;
       }
       </code></pre>
+      <h2>Window.localStorage</h2>
+      <a
+        class="link"
+        href="https://developer.mozilla.org/ru/docs/Web/API/Window/localStorage"
+        target="_blank"
+        >Window.localStorage MDN</a
+      >
+      <pre><code>
+        <strong>let bookmarks = [];</strong>
+        ... 
+        function storeBookmark(e) {
+          e.preventDefault();
+          let nameValue = websiteNameEl.value;
+          let urlValue = websiteUrlEl.value;
+          if (urlValue.includes("http://", "https://")) {
+            urlValue = `https://${urlValue}`;
+          }
+          // Validate
+          if (!validate(nameValue, urlValue)) {
+            return false;
+          }
+         <strong> const bookmark = {
+            name: nameValue,
+            url: urlValue,
+          };
+          bookmarks.push(bookmark);
+          websiteNameEl.focus();
+          console.log(bookmarks);        
+        </strong>
+        }
+      </code></pre>
+      <div class="alert">
+        <p>
+          Метод <code>HTMLFormElement.reset()</code> восстанавливает стандартные
+          значения всем элементам формы. Данный метод выполняет действие
+          идентичное нажатию кнопки имеющей тип <code>reset</code>.
+        </p>
+      </div>
+      <p>Заполню форму и нажму кнопку</p>
 
       <!-- end -->
     </div>
