@@ -129,7 +129,7 @@
         let nameValue = websiteNameEl.value;
         let urlValue = websiteUrlEl.value;
         <span>// Инструкция ниже чтобы можно ввести имя хоста без названия протокола</span>
-        if (urlValue.includes("http://", "https://")) {
+        if (urlValue.includes("http")) {
           urlValue = `https://${urlValue}`;
         }
         <span>//Валидация данных</span>        
@@ -138,8 +138,10 @@
         }
       }
       </code></pre>
+      <p>Метод includes() работает с одним аргументом(по идее нужно http:// & https://)</p>
+      <a class="link" href="https://stackoverflow.com/questions/37896484/multiple-conditions-for-javascript-includes-method">Варианты с двумя аргументами</a>
       <p>Напишу ф-ию <code>validate(nameValue, urlValue)</code></p>
-      <a
+      <a 
         href="https://stackoverflow.com/questions/3809401/what-is-a-good-regular-expression-to-match-a-url"
         class="link"
         >What is a good regular expression to match a URL</a
@@ -297,12 +299,55 @@
         }
         </code></pre>
         <p>Введи данные и глянь консоль</p>
+        <div class="alert">
+          <p>Обработчики <code>on<i>event</i></code> - это свойства определенных элементов DOM, позволяющие управлять тем, как этот элемент реагирует на события.</p>
+          <p>Обработчик <code>on-event</code> обычно называется с именем события, на которое он реагирует, например <code>on<i>click</i></code> , <code>on<i>keypress</i></code> , <code>on<i>focus</i></code> и т. д.</p>
+        </div>
+        <div class="alert">
+          <p>Метод <code>parentNode.append()</code> вставляет набор объектов <code>Node</code> или объектов <code>DOMString</code> после последнего дочернего элемента родительского узла</p>
+        </div>
+        <pre><code>
+        // Build Bookmarks DOM
+        function buildBookmarks() {
+          <span>// Build items</span>
+          bookmarks.forEach((bookmark) => {
+            const { name, url } = bookmark;
+            <span>// Item</span>
+            const item = document.createElement("div");
+            item.classList.add("item");
+            <span>// Close Icon</span>
+            const closeIcon = document.createElement("i");
+            closeIcon.classList.add("fas", "fa-times");
+            closeIcon.setAttribute("title", "Delete Bookmark");
+            closeIcon.setAttribute("onclick", `deleteBookmark('${url}')`);
+            <span>// Favicon & Link container</span>
+            const linkInfo = document.createElement("div");
+            linkInfo.classList.add("name");
+            <span>// Favicon</span>
+            const favicon = document.createElement("img");
+            favicon.setAttribute(
+              "src",
+              `https://s2.googleusercontent.com/s2/favicons?domain=${url}`
+            );
+            favicon.setAttribute("alt", "Favicon");
+            <span>// Link</span>
+            const link = document.createElement("a");
+            link.setAttribute("href", `${url}`);
+            link.setAttribute("target", "_blank");
+            link.textContent = name;
+            <span>// Append to bookmarks container</span>
+            linkInfo.append(favicon, link);
+            item.append(closeIcon, linkInfo);
+            bookmarksContainer.appendChild(item);
+          });
+        }
+        </code></pre>
+      <p>Получаю доп элементы. Теперь ещё их нужно научить удаляться.</p>
 
 
 
 
 
-        
 
       <!-- end -->
     </div>

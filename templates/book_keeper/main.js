@@ -44,7 +44,33 @@ function buildBookmarks() {
   // Build items
   bookmarks.forEach((bookmark) => {
     const { name, url } = bookmark;
-    console.log(name, url);
+    // Item
+    const item = document.createElement("div");
+    item.classList.add("item");
+    // Close Icon
+    const closeIcon = document.createElement("i");
+    closeIcon.classList.add("fas", "fa-times");
+    closeIcon.setAttribute("title", "Delete Bookmark");
+    closeIcon.setAttribute("onclick", `deleteBookmark('${url}')`);
+    // Favicon & Link container
+    const linkInfo = document.createElement("div");
+    linkInfo.classList.add("name");
+    // Favicon
+    const favicon = document.createElement("img");
+    favicon.setAttribute(
+      "src",
+      `https://s2.googleusercontent.com/s2/favicons?domain=${url}`
+    );
+    favicon.setAttribute("alt", "Favicon");
+    // Link
+    const link = document.createElement("a");
+    link.setAttribute("href", `${url}`);
+    link.setAttribute("target", "_blank");
+    link.textContent = name;
+    // Append to bookmarks container
+    linkInfo.append(favicon, link);
+    item.append(closeIcon, linkInfo);
+    bookmarksContainer.appendChild(item);
   });
 }
 
@@ -68,21 +94,21 @@ function fetchBookmarks() {
 // Handle data from form
 function storeBookmark(e) {
   e.preventDefault();
-  let nameValue = websiteNameEl.value;
+  const nameValue = websiteNameEl.value;
   let urlValue = websiteUrlEl.value;
-  if (!urlValue.includes("http://", "https://")) {
+  if (!urlValue.includes("http")) {
     urlValue = `https://${urlValue}`;
   }
   // Validate
   if (!validate(nameValue, urlValue)) {
     return false;
   }
+  // Set bookmark object, add to array
   const bookmark = {
     name: nameValue,
     url: urlValue,
   };
   bookmarks.push(bookmark);
-
   // Set bookmarks in localStorage, fetch, reset input fields
   localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
   fetchBookmarks();
