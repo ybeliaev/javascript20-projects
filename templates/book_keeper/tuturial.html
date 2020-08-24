@@ -201,7 +201,74 @@
         </p>
       </div>
       <p>Заполню форму и нажму кнопку</p>
+      <pre><code>
+      { ....
+      bookmarks.push(bookmark);
+      console.log(bookmarks);
+      <span>// Set bookmarks in localStorage, fetch, reset input fields</span>
+      <strong>localStorage.setItem("bookmarks", JSON.stringify(bookmarks));</strong>
+      bookmarkForm.reset();
+      websiteNameEl.focus();
+    }
+      </code></pre>
+      <p>
+        Смотрю в консоли в <code>Application</code> что там в
+        <code>localStorage</code>..
+      </p>
+      <div class="alert">
+        <p>
+          Метод <code>JSON.stringify()</code> преобразует значение JavaScript в
+          строку <code>JSON</code>
+        </p>
+      </div>
+      <div class="alert">
+        <p>
+          Метод <code>JSON.parse()</code> разбирает строку <code>JSON</code>
+        </p>
+      </div>
+      <pre><code>
+        <span>// Fetch Bookmarks</span>
+      function fetchBookmarks() {
+        <span>// Get bookmarks from localStorage if available</span>
+        if (localStorage.getItem("bookmarks")) {
+          bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
+        } else {
+          bookmarks = [
+            {
+              name: "Jorgen",
+              url: "https://www.google.com/",
+            },
+          ];
+          localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+        }
+      }
+      ... 
 
+      <strong>function storeBookmark(e)</strong> {
+
+      ... 
+      <span>// Set bookmarks in localStorage, fetch, reset input fields</span>
+      localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+      <strong>fetchBookmarks();</strong>
+      bookmarkForm.reset();
+      websiteNameEl.focus();
+      }
+      <span>// Event Listener</span>
+      bookmarkForm.addEventListener('submit', storeBookmark);
+
+      <span>// On Load, Fetch Bookmarks</span>
+      fetchBookmarks();
+
+      </code></pre>
+      <div class="alert">
+        <p><code>fetch</code> - получать</p>
+      </div>
+      <p>
+        Очистить localStorage и перезагрузить страницу - появится <code>
+        Очистить localStorage и перезагрузить страницу - появится   [{name:
+          "Jorgen", url: "https://www.google.com/"}]
+        </p>
+        Очистить localStorage и перезагрузить страницу - появится </code>
       <!-- end -->
     </div>
   </body>
