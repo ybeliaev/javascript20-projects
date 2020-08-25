@@ -78,9 +78,10 @@ a:not(.link):active {
 }
 
 .name img {
+  display: inline-block;
   height: 20px;
   width: 20px;
-  vertical-align: sub;
+  vertical-align: text-bottom;
   margin-right: 5px;
 }
 
