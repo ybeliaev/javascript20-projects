@@ -53,6 +53,48 @@
           <code>left/right/top/bottom.</code>
         </p>
       </div>
+      <div class="alert">
+        <p>
+          <code>Transition</code> описывает переход в определённое
+          состояние.Каждый одно-свойственный <code>transition</code> описывает
+          переход, который должен быть применён к одному свойству (или
+          специальным значениям <code>all</code> и <code>none</code>).
+        </p>
+      </div>
+      <h2>Получить данные DOM</h2>
+      <pre><code>
+      const player = document.querySelector(".player");
+      const video = document.querySelector(".video");
+      const progressRange = document.querySelector(".progress-range");
+      const progressBar = document.querySelector(".progress-bar");
+      const playBtn = document.getElementById("play-btn");
+      const volumeIcon = document.getElementById("volume-icon");
+      const volumeRange = document.querySelector(".volume-range");
+      const volumeBar = document.querySelector(".volume-bar");
+      const speed = document.querySelector(".player-speed");
+      const currentTime = document.querySelector(".time-elapsed");
+      const duration = document.querySelector(".time-duration");
+      const fullscreenBtn = document.querySelector(".fullscreen");
+      </code></pre>
+      <a class="link" href="https://www.w3schools.com/tags/ref_av_dom.asp"
+        >HTML Audio/Video DOM</a
+      >
+      <h2>Реализация запуска и паузы</h2>
+      <pre><code>
+        <span>// Play & Pause </span>
+      function togglePlay() {
+        if (video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      }
+      <span>// Event Listeners</span>
+      playBtn.addEventListener("click", togglePlay);
+      video.addEventListener("click", togglePlay);
+      </code></pre>
+      <p>Первый клик - запуск, второй - пауза.</p>
+      <h2>Изменение иконки паузы изапуска</h2>
 
       <!-- end -->
     </div>
