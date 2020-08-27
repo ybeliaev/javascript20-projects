@@ -94,7 +94,41 @@
       video.addEventListener("click", togglePlay);
       </code></pre>
       <p>Первый клик - запуск, второй - пауза.</p>
-      <h2>Изменение иконки паузы изапуска</h2>
+      <h2>Изменение иконки паузы и запуска</h2>
+      <pre><code>
+      function togglePlay() {
+        if (video.paused) {
+          video.play();
+          playBtn.classList.replace("fa-play", "fa-pause");
+          playBtn.setAttribute("title", "Pause");
+        } else {
+          video.pause();
+          playBtn.classList.replace("fa-pause", "fa-play");
+          playBtn.setAttribute("title", "Play");
+        }
+      }
+      </code></pre>
+      <h2>Показать кнопку play при окончании видео</h2>
+      <pre><code>
+        <strong>function showPlayIcon() {
+          playBtn.classList.replace("fa-pause", "fa-play");
+          playBtn.setAttribute("title", "Play");
+        }</strong>
+        function togglePlay() {
+          if (video.paused) {
+            video.play();
+            playBtn.classList.replace("fa-play", "fa-pause");
+            playBtn.setAttribute("title", "Pause");
+          } else {
+            video.pause();
+            <span>// инструкции вынесены в отдельную функцию</span>
+            <span>из-за последующего исп-ия в ивенте</span>
+            <strong>showPlayIcon();</strong>
+          }
+        }
+        <span>// On video end show play button icon</span>
+        <strong>video.addEventListener("ended", showPlayIcon);</strong>
+      </code></pre>
 
       <!-- end -->
     </div>
