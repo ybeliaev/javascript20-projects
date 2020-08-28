@@ -87,6 +87,7 @@ a.link {
   text-decoration: none;
   border-bottom: 3px solid transparent;
   font-weight: 600;
+  transition: all 0.2s;
 }
 a.link:hover {
   color: #be4c37;
