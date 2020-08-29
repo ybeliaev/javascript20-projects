@@ -182,7 +182,41 @@
         progressBar.style.width = `${(video.currentTime / video.duration) * 100}%`;
       }
       </code></pre>
+      <pre><code>
+        <span>// Event Listeners</span>
+      playBtn.addEventListener("click", togglePlay);
+      video.addEventListener("click", togglePlay);
+      <strong>video.addEventListener("timeupdate", updateProgress);
+      <span>// эта строка для задания начального состояния</span>>
+      video.addEventListener("canplay", updateProgress);</strong>
+      </code></pre>
       <h2>Изменение текущего времени и общей продолжительности</h2>
+      <pre><code>
+        <span>// Progress Bar ---------------------------------- //</span>
+
+      <span>// Calculate display time format</span>
+      function <strong>displayTime(time)</strong> {
+        let minutes = Math.floor(time / 60);
+        let seconds = Math.floor(time % 60);
+        minutes = minutes > 9 ? minutes : `0${minutes}`;
+        seconds = seconds > 9 ? seconds : `0${seconds}`;
+        console.log(`${minutes}:${seconds}`);
+      }
+
+      <span>// Update progress bar as video plays</span>
+      function updateProgress() {
+        progressBar.style.width = `${(video.currentTime / video.duration) * 100}%`;
+        <strong>displayTime(64);</strong><span>// позже удалю</span>
+      }
+      </code></pre>
+      <p>Вывод данных на страницу</p>
+      <pre><code>
+      function updateProgress() {
+        progressBar.style.width = `${(video.currentTime / video.duration) * 100}%`;
+        <strong>currentTime.textContent = `${displayTime(video.currentTime)} /`;</strong>
+        <strong>duration.textContent = `${displayTime(video.duration)}`;</strong>
+      }
+      </code></pre>
 
       <!-- end -->
     </div>
