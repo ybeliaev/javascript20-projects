@@ -217,6 +217,41 @@
         <strong>duration.textContent = `${displayTime(video.duration)}`;</strong>
       }
       </code></pre>
+      <h2>Клик на progress bar</h2>
+      <pre><code>
+      <span>// Event Listeners</span>
+       ...  
+      progressRange.addEventListener("click", setProgress);
+      </code></pre>
+      <pre><code>
+      <span>// Click to seek within the video</span>
+      function setProgress(e){
+        console.log(e)
+      }
+      // клики и смотреть на свойство offsetX
+      // и  на свойство offsetWidth. Оно статично.
+      </code></pre>
+      <div class="alert">
+        <p>
+          Свойство <code><strong>MouseEvent</strong>>.offsetX</code>, доступное
+          только для чтения, показывает отступ курсора мыши по оси
+          <code>X</code> от края целевого DOM узла.
+        </p>
+      </div>
+      <div class="alert">
+        <p>
+          Свойство
+          <code><strong>HTMLElement</strong>.offsetWidth</code> возвращает
+          ширину элемента.
+        </p>
+      </div>
+      <pre><code>
+      function setProgress(e) {
+        const newTime = e.offsetX / progressRange.offsetWidth;
+        progressBar.style.width = `${newTime * 100}%`;
+        video.currentTime = newTime * video.duration;
+      }
+      </code></pre>
 
       <!-- end -->
     </div>
