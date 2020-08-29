@@ -155,6 +155,34 @@
       <a class="link" href="https://www.w3schools.com/tags/ref_av_dom.asp"
         >w3schools.com: currentTime & duration & timeupdate & canplay</a
       >
+      <pre><code>
+      <span>// Event Listeners</span>
+      playBtn.addEventListener("click", togglePlay);
+      video.addEventListener("click", togglePlay);
+      <strong>video.addEventListener("timeupdate", updateProgress);
+      video.addEventListener("canplay", updateProgress);</strong>
+      </code></pre>
+
+      <pre><code>
+      <span>// Progress Bar ---------------------------------- //</span>
+
+      <span>// Update progress bar as video plays</span>
+      function updateProgress() {
+        console.log(
+          "Current time: ",
+          video.currentTime,
+          "duration: ",
+          video.duration
+        );
+      }
+      </code></pre>
+      <p>Теперь менять полоску произведения</p>
+      <pre><code>
+      function updateProgress() {
+        progressBar.style.width = `${(video.currentTime / video.duration) * 100}%`;
+      }
+      </code></pre>
+      <h2>Изменение текущего времени и общей продолжительности</h2>
 
       <!-- end -->
     </div>
