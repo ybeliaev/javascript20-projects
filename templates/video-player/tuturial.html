@@ -265,6 +265,90 @@
         <span>// Event Listeners</span>
         volumeRange.addEventListener("click", changeVolume);
       </code></pre>
+      <p>Click and watch..</p>
+      <a href="https://www.w3schools.com/tags/ref_av_dom.asp" class="link"
+        >volume prop</a
+      >
+      <div class="alert">
+        <p>
+          <code>volume</code>. Sets or returns the volume of the audio/video
+        </p>
+      </div>
+      <pre><code>
+      function changeVolume(e) {
+        let volume = e.offsetX / volumeRange.offsetWidth;
+        if (volume < 0.1) {
+          volume = 0;
+        }
+        if (volume > 0.9) {
+          volume = 1;
+        }
+        volumeBar.style.width = `${volume * 100}%`;
+        video.volume = volume;
+        console.log(volumeBar.style.width);
+      }
+      </code></pre>
+      <h2>Change icon depending on volume</h2>
+      <pre><code>
+      function changeVolume(e) {
+        ... 
+        // Change icon depending on volume
+        volumeIcon.className = ""; <span>// remove icon & volume bar</span>
+      }
+      </code></pre>
+      <div class="alert">
+        <p>
+          Свойство <code>className</code> отвечает за значение атрибута class
+          элемента.
+        </p>
+        <p>
+          <code>elem.className = cName</code>; <code>cName</code> - строка. Если
+          нужно указать несколько классов, они указываются через пробел.
+        </p>
+      </div>
+      <div class="alert">
+        <p>
+          Свойство <code>classList</code> возвращает псевдомассив DOMTokenList,
+          содержащий все классы элемента.
+        </p>
+        <p>
+          <code>var elementClasses = elem.classList;</code> Результат -
+          псевдомассив <code>DOMTokenList</code>, содержащий все классы узла
+          <code>elem</code>
+        </p>
+      </div>
+      <div class="alert">
+        <p>
+          <strong
+            ><code>ClassList</code> является геттером с методами:
+            <code>add</code>, <code>remove</code>, <code>item</code>,
+            <code>toggle</code>, <code>contains</code></strong
+          >
+        </p>
+      </div>
+      <pre><code>
+      function changeVolume(e) {
+        let volume = e.offsetX / volumeRange.offsetWidth;
+        if (volume < 0.1) {
+          volume = 0;
+        }
+        if (volume > 0.9) {
+          volume = 1;
+        }
+        volumeBar.style.width = `${volume * 100}%`;
+        video.volume = volume;
+        console.log(volumeBar.style.width);
+        <span>// Change icon depending on volume</span>
+        volumeIcon.className = "";
+        if (volume > 0.7) {
+          volumeIcon.classList.add("fas", "fa-volume-up");
+        } else if (volume < 0.7 && volume > 0) {
+          volumeIcon.classList.add("fas", "fa-volume-down");
+        } else if (volume === 0) {
+          volumeIcon.classList.add("fas", "fa-volume-off");
+        }
+      }
+      </code></pre>
 
       <!-- end -->
     </div>
