@@ -349,6 +349,51 @@
         }
       }
       </code></pre>
+      <h2>Icon Volume(mute/unmute)</h2>
+      <pre><code>
+      <span>// Volume Controls -------- //</span>
+      <span>по-видимому чтобы значение volume вынести в глобальную обл видимости</span>
+      let lastVolume = 1;
+
+      <span>// Volume Bar</span>
+      function changeVolume(e) {
+        .. 
+        lastVolume = volume;
+      }
+      <span>// Mute/Unmute</span>
+      function toggleMute() {
+        if (video.volume) {
+          <span>//чтобы сохранить уровень громкости</span>
+          lastVolume = video.volume;
+          video.volume = 0;
+          volumeBar.style.width = 0;
+        } else {
+          video.volume = lastVolume;
+          volumeBar.style.width = `${lastVolume * 100}%`;
+        }
+      }
+      .. 
+      volumeIcon.addEventListener("click", toggleMute);
+      </code></pre>
+      <p>Now change valume and click on the icon value: is working</p>
+      <p>Now change icon:</p>
+      <pre><code>
+      function toggleMute() {
+        volumeIcon.className = "";
+        if (video.volume) {
+          lastVolume = video.volume;
+          video.volume = 0;
+          volumeBar.style.width = 0;
+          <strong>volumeIcon.classList.add("fas", "fa-volume-mute");
+          volumeIcon.setAttribute("title", "Unmute");</strong>
+        } else {
+          video.volume = lastVolume;
+          volumeBar.style.width = `${lastVolume * 100}%`;
+          <strong> volumeIcon.classList.add("fas", "fa-volume-up");
+          volumeIcon.setAttribute("title", "Mute");</strong>
+        }
+      }
+      </code></pre>
 
       <!-- end -->
     </div>
