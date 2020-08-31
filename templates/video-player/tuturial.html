@@ -252,6 +252,19 @@
         video.currentTime = newTime * video.duration;
       }
       </code></pre>
+      <h2>Change volume bar</h2>
+      <p>Input video <code>Car Racing (1080P)</code></p>
+      <pre><code>
+        <span>// Volume Controls --------------------------- //</span>
+        <span>// Volume Bar</span>
+        function changeVolume(e) {
+          let volume = e.offsetX / volumeRange.offsetWidth;
+          console.log(volume);
+        }
+
+        <span>// Event Listeners</span>
+        volumeRange.addEventListener("click", changeVolume);
+      </code></pre>
 
       <!-- end -->
     </div>
