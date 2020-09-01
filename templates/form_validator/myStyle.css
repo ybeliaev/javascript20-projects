@@ -80,7 +80,7 @@ code strong {
 }
 a.link {
   z-index: 3;
-  margin-right: 25px;
+  margin: 25px;
   text-transform: uppercase;
   color: rgb(3, 60, 182);
   text-decoration: none;
