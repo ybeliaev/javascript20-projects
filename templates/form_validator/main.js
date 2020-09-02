@@ -20,8 +20,9 @@ function validateForm() {
     message.textContent = "Please fill out all fields.";
     message.style.color = "red";
     messageContainer.style.borderColor = "red";
+    return;
   }
-  // Chek to see if password match
+  // Check to see if password match
   if (password1El.value === password2El.value) {
     passwordMatch = true;
     password1El.style.borderColor = "green";
@@ -33,13 +34,36 @@ function validateForm() {
     messageContainer.style.borderColor = "red";
     password1El.style.borderColor = "red";
     password2El.style.borderColor = "red";
+    return;
   }
+  // if form is valid & password match
+  if (isValid && passwordMatch) {
+    message.textContent = "Successfully registered!";
+    message.style.color = "green";
+    messageContainer.style.borderColor = "green";
+  }
+}
+// чтобы потом на сервак кинуть данные
+function storeFormData() {
+  const user = {
+    name: form.name.value,
+    phone: form.phone.value,
+    email: form.email.value,
+    website: form.website.value,
+    password: form.password.value,
+  };
+  // Do something with user data
+  console.log(user);
 }
 
 function processFormData(e) {
   e.preventDefault();
   // Validate Form
   validateForm();
+  // Submit Form if Valid
+  if (isValid && passwordMatch) {
+    storeFormData();
+  }
 }
 // Event Listener
 form.addEventListener("submit", processFormData);

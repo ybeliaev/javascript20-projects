@@ -118,7 +118,110 @@
       }
       </code></pre>
       <h2>Валидация пароля.</h2>
+      <pre><code>
+      function validateForm() {
+        <span>// Use HTML constraint API to check form validity</span>
+        isValid = form.checkValidity();
+        console.log(isValid);
+        <span>// Style main message for an error</span>
+        if (!isValid) {
+          message.textContent = "Please fill out all fields.";
+          message.style.color = "red";
+          messageContainer.style.borderColor = "red";
+        }
+        <span>// Check to see if password match</span>
+        <strong>if (password1El.value === password2El.value) {
+          passwordMatch = true;
+          password1El.style.borderColor = "green";
+          password2El.style.borderColor = "green";
+        } else {
+          passwordMatch = false;
+          message.textContent = "Make sure passwords match.";
+          message.style.color = "red";
+          messageContainer.style.borderColor = "red";
+          password1El.style.borderColor = "red";
+          password2El.style.borderColor = "red";
+        }
+        <span>// if form is valid & password match</span>
+        if (isValid && passwordMatch) {
+          message.textContent = "Successfully registered!";
+          message.style.color = "green";
+          messageContainer.style.borderColor = "green";</strong>>
+        }
+      }
+      </code></pre>
+      <p>Рефакторинг чтобы при неверных данных код дальше не выполнялся</p>
+      <pre><code>
+      function validateForm() {
+        <span>// Use HTML constraint API to check form validity</span>
+        isValid = form.checkValidity();
+        console.log(isValid);
+        <span>// Style main message for an error</span>
+        if (!isValid) {
+          message.textContent = "Please fill out all fields.";
+          message.style.color = "red";
+          messageContainer.style.borderColor = "red";
+          <strong>return;</strong>
+        }
+        <span>// Check to see if password match</span>
+        if (password1El.value === password2El.value) {
+          passwordMatch = true;
+          password1El.style.borderColor = "green";
+          password2El.style.borderColor = "green";
+        } else {
+          passwordMatch = false;
+          message.textContent = "Make sure passwords match.";
+          message.style.color = "red";
+          messageContainer.style.borderColor = "red";
+          password1El.style.borderColor = "red";
+          password2El.style.borderColor = "red";
+          <strong>return;</strong>
+        }
+        <span>// if form is valid & password match</span>
+        if (isValid && passwordMatch) {
+          message.textContent = "Successfully registered!";
+          message.style.color = "green";
+          messageContainer.style.borderColor = "green";
+        }
+      }
+      </code></pre>
+      <p>
+        Можно проверить выполнение кода, зайдя в <code>Sourse</code> и в файле
+        <code>main.js</code> поставить брейкпоинты(на номерах строк) до
+        <code>return</code> и после. Нажать register.. по шагам докликать до
+        точки после <code>return</code> - программа не отслеживается
+      </p>
+      <p>
+        Теперь данные нужно сохранить. Для этого в <code>input</code>-ов
+        использую атрибут
+        <code>name</code>
+      </p>
+      <pre><code>
+        <span>// чтобы потом на сервак кинуть данные</span>
+      function <strong>storeFormData()</strong> {
+        const user = {
+          name: form.name.value,
+          phone: form.phone.value,
+          email: form.email.value,
+          website: form.website.value,
+          password: form.password.value,
+        };
+        <span>// Do something with user data</span>
+        console.log(user);
+      }
 
+      function processFormData(e) {
+        e.preventDefault();
+        <span>// Validate Form</span>
+        validateForm();
+        <span>// Submit Form if Valid</span>
+        <strong>if (isValid && passwordMatch) {
+          storeFormData();
+        }</strong>
+      }
+      <span>// Event Listener</span>
+      form.addEventListener("submit", processFormData);
+      </code></pre>
       <!-- end -->
     </div>
   </body>
