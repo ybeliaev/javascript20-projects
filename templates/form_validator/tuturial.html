@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tutor book keeper</title>
+    <title>Tutor Form validation</title>
     <link rel="icon" href="./favicon.png" type="image/png" />
     <link
       rel="stylesheet"
@@ -14,7 +14,109 @@
   <body>
     <!-- my content -->
     <div class="wrapper">
-      <h2>Start</h2>
+      <h1>Валидация формы</h1>
+      <h2>HTML & CSS validate</h2>
+      <a
+        class="link"
+        href="https://developer.mozilla.org/ru/docs/Learn/HTML/Forms/%D0%92%D0%B0%D0%BB%D0%B8%D0%B4%D0%B0%D1%86%D0%B8%D1%8F_%D1%84%D0%BE%D1%80%D0%BC%D1%8B"
+        >Проверка данных формы ( MDN )</a
+      >
+      <a
+        class="link"
+        href="https://developer.mozilla.org/ru/docs/HTML/HTML5/Constraint_validation"
+        >Constraint validation</a
+      >
+      <a
+        class="link"
+        href="https://www.w3schools.com/tags/att_input_pattern.asp"
+        >Атрибут pattern</a
+      >
+      <a class="link" href="https://htmlweb.ru/html/form/form_input_pattern.php"
+        >Шаблоны для input pattern</a
+      >
+      <hr />
+      <a href="https://regexr.com/" class="link">regexr.com</a>
+      <h2>JS validate</h2>
+      <pre><code>
+      const form = document.querySelector("#form");
+      const password1El = document.querySelector("#password1");
+      const password2El = document.querySelector("#password2");
+      const messageContainer = document.querySelector(".message-container");
+      const message = document.querySelector("#message");
+
+      function processFormData(e) {
+        e.preventDefault();
+        console.log(e);
+      }
+      <span>// Event Listener</span>
+      form.addEventListener("submit", processFormData);
+      </code></pre>
+
+      <p>
+        Результат после заполнения формы и клике:
+        <code
+          >SubmitEvent {isTrusted: true, submitter: button, type: "submit",
+          target: form#form, currentTarget: form#form, …}</code
+        >
+      </p>
+      <p>
+        Далее смотреть главу <strong>Процесс валидации ограничений</strong>
+        <a
+          class="link"
+          href="https://developer.mozilla.org/ru/docs/HTML/HTML5/Constraint_validation"
+          >по ссылке</a
+        >
+      </p>
+      <p>
+        Из статьи понятно, что <code>form.checkValidity()</code> возвращает
+        <code>true</code>, если входной элемент содержит допустимые данные.
+      </p>
+      <pre><code>
+      function processFormData(e) {
+        e.preventDefault();
+        <span>// Validate Form</span>
+        validateForm();
+      }
+      </code></pre>
+      <p>Далее использую Form API</p>
+      <pre><code>
+      let isValid = false;
+
+      function validateForm() {
+      <span>// Use HTML constraint API to check form validity</span>
+        isValid = form.checkValidity();
+        console.log(isValid); <span>// true когда всё ок</span>
+      }
+
+      function processFormData(e) {
+        e.preventDefault();
+       <span>// Validate Form</span>
+        validateForm();
+      }
+      </code></pre>
+      <p>Изменяю надпись внизу</p>
+      <p>
+        <strong>Важно:</strong>поставить форме <code>form</code> атрибут
+        <code>novalidate</code>
+      </p>
+      <div class="alert">
+        <p>
+          <code>novalidate</code> - отменяет встроенную проверку данных
+          введенных пользователем в форме на корректность.
+        </p>
+      </div>
+      <pre><code>
+      function validateForm() {
+        <span>// Use HTML constraint API to check form validity</span>
+        isValid = form.checkValidity();
+        console.log(isValid);
+        <span>// Style main message for an error</span>
+        <span>ЭТО РАБОТАЕТ НЕВЕРНО - ТОЛЬКО ПРОВЕРИТЬ РАБОТОСПОСОБНОСТЬ</span>
+        <strong>message.textContent = "Please fill out all fields.";
+        message.style.color = "red";
+        messageContainer.style.borderColor = "red";</strong>
+      }
+      </code></pre>
 
       <!-- end -->
     </div>
