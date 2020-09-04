@@ -50,7 +50,9 @@ h2 {
 #computer .choice {
   color: rgb(231, 88, 63);
 }
+/* класс выбора варианта */
 .selected {
+  /* !important - цвет по умолчанию задан с #player что выше по весу */
   color: black !important;
 }
 .reset-icon {
