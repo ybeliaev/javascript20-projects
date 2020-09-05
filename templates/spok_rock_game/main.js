@@ -1,7 +1,4 @@
-console.log(
-  "Spock rock game: ",
-  new Date().getHours() + ":" + new Date().getMinutes()
-);
+console.log("Spock rock game: ", new Date().toLocaleTimeString());
 // import { startConfetti, stopConfetti, removeConfetti } from "./confetti.js";
 
 const playerScoreEl = document.getElementById("playerScore");
