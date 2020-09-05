@@ -83,13 +83,15 @@ a.link {
   z-index: 3;
   margin: 25px 5px;
   text-transform: uppercase;
-  color: rgb(3, 60, 182);
+  color: rgb(128, 0, 128);
   text-decoration: none;
   border-bottom: 3px solid transparent;
   font-weight: 600;
+  text-shadow: 1px 1px 5px rgba(128, 0, 128, 0.7);
   transition: all 0.2s;
 }
 a.link:hover {
-  color: #be4c37;
+  color: rgb(190, 76, 55);
   border-bottom: 3px solid;
+  text-shadow: 1px 1px 5px rgba(190, 75, 55, 0.7);
 }
