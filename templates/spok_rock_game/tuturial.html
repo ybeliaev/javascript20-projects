@@ -121,6 +121,99 @@
         }
       </code></pre>
       <h2>Тоже самое для ИИ</h2>
+      <pre><code>
+      <span>// Call function to process turn</span>
+      function <strong>checkResult()</strong> {
+        resetSelected();
+      }
+
+      <span>// Passing player selection value and styling icons</span>
+      function select(playerChoice) {
+        <strong>checkResult();</strong>
+      <span>// Add 'selected' styling & playerChoice</span>
+        switch (playerChoice)
+      </code></pre>
+      <pre><code>
+      const choices = {
+        rock: { name: "Rock", defeats: ["scissors", "lizard"] },
+        paper: { name: "Paper", defeats: ["rock", "spock"] },
+        scissors: { name: "Scissors", defeats: ["paper", "lizard"] },
+        lizard: { name: "Lizard", defeats: ["paper", "spock"] },
+        spock: { name: "Spock", defeats: ["scissors", "rock"] },
+      };
+      <strong>let computerChoice = "";</strong>
+      .. 
+      <span>// Random computer choice</span>
+      function <strong>computerRandomChoice()</strong> {
+        const computerChoiceNumber = Math.random();
+        console.log(computerChoiceNumber);
+      }
+
+      <span>// Call function to process turn</span>
+      function checkResult() {
+        resetSelected();
+        <strong>computerRandomChoice();</strong>
+      }
+      </code></pre>
+      <p>
+        Клики выводят рандомные числа, которые теперь нужно "превратить" в текст
+      </p>
+      <pre><code>
+      <span>// Random computer choice</span>
+      function computerRandomChoice() {
+        const computerChoiceNumber = Math.random();
+        if (computerChoiceNumber < 0.2) {
+          computerChoice = "rock";
+        } else if (computerChoiceNumber <= 0.4) {
+          computerChoice = "paper";
+        } else if (computerChoiceNumber <= 0.6) {
+          computerChoice = "scissors";
+        } else if (computerChoiceNumber <= 0.8) {
+          computerChoice = "lizard";
+        } else {
+          computerChoice = "spock";
+        }
+        console.log(computerChoice);
+      }
+      </code></pre>
+      <p>Кликаю и вижу вывод текста..</p>
+      <h2>Вывод рандомного текста для ИИ</h2>
+      <pre><code>
+      <span>// Add 'selected' styling & computerChoice</span>
+      function displayComputerChoice() {
+        switch (computerChoice) {
+          case 'rock':
+            computerRock.classList.add('selected');
+            computerChoiceEl.textContent = ' --- Rock';
+            break;
+          case 'paper':
+            computerPaper.classList.add('selected');
+            computerChoiceEl.textContent = ' --- Paper';
+            break;
+          case 'scissors':
+            computerScissors.classList.add('selected');
+            computerChoiceEl.textContent = ' --- Scissors';
+            break;
+          case 'lizard':
+            computerLizard.classList.add('selected');
+            computerChoiceEl.textContent = ' --- Lizard';
+            break;
+          case 'spock':
+            computerSpock.classList.add('selected');
+            computerChoiceEl.textContent = ' --- Spock';
+            break;
+          default:
+            break;
+        }
+      }
+      .. 
+    <span>// Call function to process turn</span>
+    function checkResult() {
+      resetSelected();
+      computerRandomChoice();
+      <strong>displayComputerChoice();</strong>
+    }
+      </code></pre>
 
       <!-- end -->
     </div>
