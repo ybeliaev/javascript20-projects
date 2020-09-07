@@ -213,8 +213,92 @@
       computerRandomChoice();
       <strong>displayComputerChoice();</strong>
     }
-      </code></pre>
+    </code></pre>
+      <h2>Вывод результата</h2>
+      <p>
+        Объект <code>choices</code> содержит массив <code>defeat</code> с
+        вариантами поражений
+      </p>
+      <pre><code>
+    <strong>let playerScoreNumber = 0;
+    let computerScoreNumber = 0;</strong>
+    let computerChoice = "";
+    .. 
+    <span>// Check result, increase scores, update resultText</span>
+    <strong>function updateScore(playerChoice) {
+      console.log(playerChoice, computerChoice);
+    }</strong>
+    .. 
+    <span>// Call function to process turn</span>
+    function checkResult(playerChoice) {
+      resetSelected();
+      computerRandomChoice();
+      displayComputerChoice();
+      <strong>updateScore(playerChoice)</strong>
+    }
 
+    <span>// Passing player selection value and styling icons</span>
+    function select(playerChoice) {
+      checkResult(<strong>playerChoice</strong>);
+      .. 
+    }
+    </code></pre>
+      <p>
+        По кликам получу <code>playerChoice</code> и <code>computerChoice</code>
+      </p>
+      <pre><code>
+    function updateScore(playerChoice) {
+      console.log(playerChoice, computerChoice);
+      <strong>if (playerChoice === computerChoice) {
+        resultText.textContent = "It's a tie.";
+      }</strong>
+    }      
+    </code></pre>
+      <p>Получить текст "It's a tie." прокликав</p>
+      <pre><code>
+      function updateScore(playerChoice) {
+        console.log(playerChoice, computerChoice);
+        if (playerChoice === computerChoice) {
+          resultText.textContent = "It's a tie.";
+        } <strong>else {
+          const choice = choices[playerChoice];
+          console.log(choice);
+        }</strong>
+      }
+      </code></pre>
+      <p>Получу массив</p>
+      <p>
+        Вместо <code>console.log(choice)</code> вписать
+        <code>console.log(choice.defeats.indexOf(computerChoice))</code> и в
+        консоли видно пары результата и <code>1</code> или <code>-1</code> или
+        <code>0</code>
+      </p>
+      <div class="alert">
+        <p>
+          Метод <code>indexOf()</code> возвращает первый индекс, по которому
+          данный элемент может быть найден в массиве или -1, если такого индекса
+          нет.
+        </p>
+      </div>
+      <pre><code>
+      function updateScore(playerChoice) {        
+        if (playerChoice === computerChoice) {
+          resultText.textContent = "It's a tie.";
+        } else {
+          const choice = choices[playerChoice];          
+          <strong>if (choice.defeats.indexOf(computerChoice) > -1) {
+            resultText.textContent = "You Won!";
+            playerScoreNumber++;
+            playerScoreEl.textContent = playerScoreNumber;
+          } else {
+            resultText.textContent = "You Lost!";
+            computerScoreNumber++;
+            computerScoreEl.textContent = computerScoreNumber;
+          }</strong>
+        }
+      }
+      </code></pre>
+      <h2>Reset All</h2>
       <!-- end -->
     </div>
   </body>
