@@ -417,6 +417,43 @@
         <code>window.select = select</code> и
         <code>window.resetAll = resetAll</code>
       </p>
+      <h2>Рефакторинг</h2>
+      <h3>Dynamic module loading</h3>
+      <pre><code>
+      import('./modules/myModule.js')
+        .then((module) => {
+          <span>// Do something with the module.</span>>
+        });
+      </code></pre>
+      <p>
+        Т.е отключить импорт в main.js, закоментить <code>stopConfetti</code>,
+        <code>removeConfetti</code> и
+      </p>
+      <pre><code>
+      function updateScore(playerChoice) {
+        console.log(playerChoice, computerChoice);
+        if (playerChoice === computerChoice) {
+          resultText.textContent = "It's a tie.";
+        } else {
+          const choice = choices[playerChoice];
+          console.log(choice);
+          if (choice.defeats.indexOf(computerChoice) > -1) {
+            <strong>import('./confetti.js')
+            .then((module)=>{
+              startConfetti();
+              resultText.textContent = "You Won!";
+              playerScoreNumber++;
+              playerScoreEl.textContent = playerScoreNumber;
+            })</strong>
+            
+          } else {
+            resultText.textContent = "You Lost!";
+            computerScoreNumber++;
+            computerScoreEl.textContent = computerScoreNumber;
+          }
+        }
+      }
+      </code></pre>
 
       <!-- end -->
     </div>
