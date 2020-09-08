@@ -323,6 +323,100 @@
       <span>// On startup, set initial values</span>
       resetAll();
       </code></pre>
+      <h2>Add confetti.js</h2>
+      <a
+        href="https://www.cssscript.com/confetti-falling-animation/"
+        class="link"
+        >Confetti falling animation</a
+      >
+      <div class="alert">
+        <p>
+          <code>
+            &lt;script src=&quot;#&quot;
+            <strong>type=&quot;module&quot;</strong>&gt;&lt;/script&gt;
+          </code>
+        </p>
+        <p>
+          Модули могут загружать друг друга и использовать директивы
+          <code>export</code> и <code>import</code>, чтобы обмениваться
+          функциональностью, вызывать функции одного модуля из другого
+        </p>
+      </div>
+      <pre><code>
+      <span>// Reset all 'selected' icons, remove confetti</span>
+      function resetSelected() {
+        allGameIcons.forEach((icon) => {
+          icon.classList.remove("selected");
+        });
+        <strong>stopConfetti();</strong>
+        <strong>removeConfetti()</strong>
+      }
+
+      <span>// Check result, increase scores, update resultText</span>
+      function updateScore(playerChoice) {
+        console.log(playerChoice, computerChoice);
+        if (playerChoice === computerChoice) {
+          resultText.textContent = "It's a tie.";
+        } else {
+          const choice = choices[playerChoice];
+          console.log(choice);
+          if (choice.defeats.indexOf(computerChoice) > -1) {
+            <strong>startConfetti();</strong>
+            resultText.textContent = "You Won!";
+            playerScoreNumber++;
+            playerScoreEl.textContent = playerScoreNumber;
+          } else {
+            resultText.textContent = "You Lost!";
+            computerScoreNumber++;
+            computerScoreEl.textContent = computerScoreNumber;
+          }
+        }
+      }
+      </code></pre>
+      <p>
+        Убрать в <code>confetti.js</code> самовызывайку и добавить
+        <code>export { startConfetti, stopConfetti, removeConfetti }</code>
+      </p>
+      <p>
+        В <code>main.js</code> добавить
+        <code
+          >import { startConfetti, stopConfetti, removeConfetti } from
+          "./confetti.js"</code
+        >
+      </p>
+      <p>Для проверки в конце кода <code>startConfetti()</code></p>
+      <p>Будет салют<span style="font-size: 50px">&#127752;</span></p>
+
+      <p>
+        Но при нажатии на элемент
+        <code style="color: red"
+          >Uncaught ReferenceError: select is not defined</code
+        >
+      </p>
+      <div class="alert">
+        <p>Причина:</p>
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+          >Moduls MDN</a
+        >
+        <p>
+          Раздел
+          <strong
+            >Other differences between modules and standard scripts</strong
+          >
+        </p>
+        <p>
+          функции модуля импортируются в область действия одного скрипта - они
+          недоступны в глобальной области. Следовательно, вы сможете получить
+          доступ только к импортированным функциям в сценарии, в который они
+          импортированы
+        </p>
+      </div>
+      <p>
+        Помещаю <code>select</code> в глобальную область:
+        <code>window.select = select</code> и
+        <code>window.resetAll = resetAll</code>
+      </p>
 
       <!-- end -->
     </div>
