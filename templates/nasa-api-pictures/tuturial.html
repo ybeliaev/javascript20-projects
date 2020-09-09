@@ -116,8 +116,7 @@
     <strong>explanation:</strong> "What's that point of light above the World Trade Center?
     It's Comet Hale-Bopp!
     Both faster than a speeding bullet and able to "leap"
-    tall buildings in its single orbit,
-    Comet Hale-Bopp is also bright enough to be seen even over the glowing lights of one of the world's premier cities."
+    tall buildings in its single orbit.."
     <strong>hdurl:</strong> "https://apod.nasa.gov/apod/image/9704/halebopp2_js_big.jpg"
     <strong>media_type:</strong> "image"
     <strong>service_version:</strong> "v1"
@@ -125,6 +124,54 @@
     ↵Credit and Copyright:"
     <strong>url:</strong> "https://apod.nasa.gov/apod/image/9704/halebopp2_js.jpg"
       </code></pre>
+      <h2>Создание DOM элементов</h2>
+      <p>Удалить <code>div</code> с классом <code>card</code></p>
+      <p>Получаю элементы:</p>
+      <pre><code>
+    const resultsNav = document.getElementById('resultsNav');
+    const favoritesNav = document.getElementById('favoritesNav');
+    const imagesContainer = document.querySelector('.images-container');
+    const saveConfirmed = document.querySelector('.save-confirmed');
+    const loader = document.querySelector('.loader');
+      </code></pre>
+      <div class="alert">
+        <p>
+          Атрибут <code>loading</code> элемента <img /> (или
+          <code>loading</code> атрибут для <code>iframe</code>) могут быть
+          использованы, чтобы указать браузеру на необходимость отложить
+          загрузку изображений или фреймов до тех пор, пока пользователь не
+          доскроллит до них.
+        </p>
+      </div>
+      <div class="alert">
+        <p>
+          Метод <code>parentNode.append()</code> вставляет набор объектов Node
+          или объектов DOMString после последнего дочернего элемента
+          родительского узла
+        </p>
+        <p>
+          Отличия <code>Node.append()</code> от <code>Node.appendChild()</code>
+        </p>
+        <ul>
+          <li>
+            <code>ParentNode.append()</code> позволяет добавлять
+            <code>DOMString</code> объекты(parent.append('Appending Text') для
+            append сработает), в то время как
+            <code>Node.appendChild()</code> принимает только <code>Node</code>.
+          </li>
+          <li>
+            <code>ParentNode.append()</code> ничего не возвращает, в то время
+            как <code>Node.appendChild()</code> возвращает добавленный объект
+            <code>Node</code>.
+          </li>
+          <li>
+            <code>ParentNode.append()</code> позволяет добавить несколько узлов
+            (node) или строк, в то время как
+            <code>Node.appendChild()</code> может добавть только один узел
+            (node).
+          </li>
+        </ul>
+      </div>
 
       <!-- end -->
     </div>
