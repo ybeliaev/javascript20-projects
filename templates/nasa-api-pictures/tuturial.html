@@ -65,6 +65,66 @@
           экранов.
         </p>
       </div>
+      <h2>Получение API NASA</h2>
+      <a href="https://api.nasa.gov/" class="link">NASA API</a>
+
+      <p>Там написано, что можно не регестрироваться:</p>
+      <h3>Authentication</h3>
+      <p>You do not need to authenticate in order to explore the NASA data..</p>
+      <p>
+        Копирую из <code>APOD</code>:
+        <code>https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY</code>
+      </p>
+      <pre><code>
+    <span>// NASA API</span>
+  const count = 10;
+  const apiKey = "DEMO_KEY";
+  const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&count=${count}`;
+      </code></pre>
+      <div class="alert">
+        <p>
+          <code>Fetch API </code>предоставляет интерфейс JavaScript для работы с
+          запросами и ответами HTTP. Он также предоставляет глобальный метод
+          <code>fetch()</code>, который позволяет легко и логично получать
+          ресурсы по сети асинхронно.
+        </p>
+      </div>
+      <a
+        href="https://developer.mozilla.org/ru/docs/Web/API/Fetch_API/Using_Fetch"
+        >Fetch MDN</a
+      >
+      <pre><code>
+  let resultsArray = [];
+
+  <span>// Get 10 images from NASA API</span>
+  async function getNasaPictures() {
+    try {
+      const response = await fetch(apiUrl);
+      resultsArray = await response.json();
+      console.log(resultsArray);
+    } catch (error) {
+      <span>// Catch Error Here</span>
+    }
+  }
+  <span>// On Load</span>
+  getNasaPictures();
+      </code></pre>
+      <p>Получаю массив с десятью объектами:</p>
+      <pre><code>
+    0:
+    <strong>date:</strong> "1997-04-08"
+    <strong>explanation:</strong> "What's that point of light above the World Trade Center?
+    It's Comet Hale-Bopp!
+    Both faster than a speeding bullet and able to "leap"
+    tall buildings in its single orbit,
+    Comet Hale-Bopp is also bright enough to be seen even over the glowing lights of one of the world's premier cities."
+    <strong>hdurl:</strong> "https://apod.nasa.gov/apod/image/9704/halebopp2_js_big.jpg"
+    <strong>media_type:</strong> "image"
+    <strong>service_version:</strong> "v1"
+    <strong>title:</strong> "Comet Hale-Bopp Over New York City 
+    ↵Credit and Copyright:"
+    <strong>url:</strong> "https://apod.nasa.gov/apod/image/9704/halebopp2_js.jpg"
+      </code></pre>
 
       <!-- end -->
     </div>
