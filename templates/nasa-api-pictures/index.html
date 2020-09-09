@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NASA APOD</title>
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://s2.googleusercontent.com/s2/favicons?domain=www.nasa.gov"
+    />
+    <!-- Default Favicon -->
+    <!-- <link rel="icon" type="image/png" href="favicon.png"> -->
+  </head>
+  <body>
+    <!-- Loader -->
+    <div class="loader hidden">
+      <img src="./rocket.svg" alt="Rocket Loading Animation" />
+    </div>
+    <!-- Container -->
+    <div class="container">
+      <!-- Navigation -->
+      <div class="navigation-container">
+        <span class="background"></span>
+        <!-- Results Nav -->
+        <span class="navigation-items" id="resultsNav">
+          <h3 class="clickable" onclick="updateDOM('favorites')">Favorites</h3>
+          <h3>&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</h3>
+          <h3 class="clickable" onclick="getNasaPictures()">Load More</h3>
+        </span>
+        <!-- Favorites Nav -->
+        <span class="navigation-items hidden" id="favoritesNav">
+          <h3 class="clickable" onclick="getNasaPictures()">
+            Load More NASA Images
+          </h3>
+        </span>
+      </div>
+      <!-- Images Container -->
+      <div class="images-container">
+        <div class="card">
+          <a href="" title="View full img" target="_blank">
+            <img
+              src="https://api.nasa.gov/assets/img/general/apod.jpg"
+              alt="NASA picture"
+              class="card-img-top"
+            />
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">Title of image</h5>
+            <p class="clickable">Add to Favorite</p>
+            <p class="card-text">
+              This service will only notify you of “good” sighting opportunities
+              - that is, sightings that are high enough in the sky (40 degrees
+              or more) and last long enough to give you the best view of the
+              orbiting laboratory.
+            </p>
+            <small class="text-muted">
+              <strong>12-12-2020</strong>
+              <span>Copyright info</span>
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Save Confirmation -->
+    <div class="save-confirmed" hidden>
+      <h1>ADDED!</h1>
+    </div>
+    <a class="link" href="./tuturial.html" target="_blank">Lesson tutorial</a>
+    <!-- Script -->
+    <script src="./main.js"></script>
+  </body>
+</html>
