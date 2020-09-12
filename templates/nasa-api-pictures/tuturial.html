@@ -315,8 +315,20 @@ getNasaPictures();
           saveConfirmed.hidden = true;
         }, 2000);
       }
-    });
-  }
+    });  
+      </code></pre>
+      <h3>Добавление в localStorage</h3>
+      <div class="alert">
+        <p>Метод <code>JSON.stringify()</code> преобразует значение JavaScript в строку JSON</p>
+      </div>
+      <pre><code>
+        function saveFavorite(itemUrl) {
+          ...
+          <span>// Set favorites in localStorage</span>
+          <strong>localStorage.setItem("NASAFavorites", JSON.stringify(favorites));</strong>
+          
+        }
+        <span>В application смотреть на localStorage</span>
       </code></pre>
       
 
