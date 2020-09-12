@@ -172,6 +172,153 @@
           </li>
         </ul>
       </div>
+      <pre><code>
+let resultsArray = [];
+
+function <strong>updateDOM()</strong> {
+  resultsArray.forEach((result) => {
+    <span>// Card Container</span>
+    const card = document.createElement("div");
+    card.classList.add("add");
+    <span>// Link</span>
+    const link = document.createElement("a");
+    link.href = result.hdurl;
+    link.title = "View Full Image";
+    link.target = "_blank";
+    <span>// Image</span>
+    const image = document.createElement("img");
+    image.src = result.url;
+    image.alt = "NASA Picture of the Day";
+    image.loading = "lazy";
+    image.classList.add("card-img-top");
+    <span>// Card Body</span>
+    const cardBody = document.createElement("div");
+    cardBody.classList.add("card-body");
+    <span>// Card Title</span>
+    const cardTitle = document.createElement("h5");
+    cardTitle.classList.add("card-title");
+    cardTitle.textContent = result.title;
+    <span>// Save Text</span>
+    const saveText = document.createElement("p");
+    saveText.classList.add("clickable");
+    saveText.textContent = "Add to Favorites";
+    <span>// Card Text</span>
+    const cardText = document.createElement("p");
+    cardText.textContent = result.explanation;
+    <span>// Footer Container</span>
+    const footer = document.createElement("small");
+    footer.classList.add("text-muted");
+    <span>// Date</span>
+    const date = document.createElement("strong");
+    date.textContent = result.date;
+    <span>// Copyright</span>
+    const copyrightResult =
+      result.copyright === undefined ? "" : result.copyright;
+    const copyright = document.createElement("span");
+    copyright.textContent = ` ${copyrightResult}`;
+    <span>// Append</span>
+    footer.append(date, copyright);
+    cardBody.append(cardTitle, saveText, cardText, footer);
+    link.appendChild(image);
+    card.append(link, cardBody);
+    imagesContainer.appendChild(card);
+  });
+}
+
+<span>// Get 10 images from NASA API</span>
+async function getNasaPictures() {
+  try {
+    const response = await fetch(apiUrl);
+    resultsArray = await response.json();
+    console.log(resultsArray);
+    <strong>updateDOM();</strong>
+  } catch (error) {
+    <span>// Catch Error Here
+  }
+}
+
+<span>// On Load</span>
+getNasaPictures();
+      </code></pre>
+      <p>И получаю 10 картиночек<span style='font-size:30px;'>&#128512;</span></p>
+      <h2>Save Favorites</h2>
+      <p>Реализовать клик на <code>Add To Favorites</code></p>
+      <pre><code>
+    <strong>let favorites = {};</strong>
+
+    function updateDOM() {
+      resultsArray.forEach((result) => {
+        .. 
+      <span>// Save Text</span>
+    const saveText = document.createElement("p");
+    saveText.classList.add("clickable");
+    saveText.textContent = "Add to Favorites";
+    <strong>saveText.onclick = `saveFavorite("${result.url}")`;</strong>
+    .. 
+    }
+    .. 
+      <span>// Add result to favorites</span>
+    function <strong>saveFavorite(itemUrl)</strong> {
+      console.log(itemUrl);
+    }
+      </code></pre>
+      <p>Клик на <code>Add To Favorites</code> и ничего не происходит, т.к onclick - метод</p>
+      <pre><code>
+    <strong>saveText.setAttribute("onclick", `saveFavorite("${result.url}")`);</strong>    
+      </code></pre>
+      <p>Теперь клик работает - получаю <code>url</code> картинки</p>
+      <a href="https://www.w3schools.com/jsref/jsref_includes.asp" class="link">String includes() Method</a>
+      <div class="alert">
+        <p>Метод <code>includes()</code> определяет, содержит ли строка символы указанной строки.</p>
+      </div>
+      <pre><code>
+    <span>// Add result to favorites</span>
+    function saveFavorite(itemUrl) {
+      <span>// Loop through results array to select Favorites</span>
+      <strong>resultsArray.forEach((item) => {
+        if (item.url.includes(itemUrl)) {
+          favorites[itemUrl] = item;
+          console.log(favorites);
+        }
+      });</strong>
+    }
+    <span>Два клика и получил объект:</span>
+  <span>// {https://apod.nasa.gov/apod/image/1406/wr104_keck_960.jpg: {…}, 
+      https://apod.nasa.gov/apod/image/1604/ISS02_NASA_960.jpg: {…}}</span>
+      </code></pre>
+      <h3>Блок ADDED добавить</h3>
+      <pre><code>
+    function saveFavorite(itemUrl) {
+      <span>// Loop through results array to select Favorites</span>
+      resultsArray.forEach((item) => {
+        if (item.url.includes(itemUrl)) {
+          favorites[itemUrl] = item;
+          console.log(favorites);
+          <span>// Show save confirmation for 2 sec</span>
+          <strong>saveConfirmed.hidden = false;
+          setTimeout(() => {
+            saveConfirmed.hidden = true;
+          }, 2000);</strong>
+        }
+      });
+    }
+      </code></pre>
+      <p>Чтобы одинаковый объект не добавлять:</p>
+      <pre><code>
+    resultsArray.forEach((item) => {
+      if (item.url.includes(itemUrl) <strong> && !favorites[itemUrl]</strong>) {
+        favorites[itemUrl] = item;
+        console.log(favorites);
+        <span>// Show save confirmation for 2 sec</span>
+        saveConfirmed.hidden = false;
+        setTimeout(() => {
+          saveConfirmed.hidden = true;
+        }, 2000);
+      }
+    });
+  }
+      </code></pre>
+      
 
       <!-- end -->
     </div>
