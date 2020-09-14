@@ -337,7 +337,7 @@ getNasaPictures();
       resultsArray.forEach((result) => {...}
     }
     <strong>function updateDOM() {
-      createDONNodes();
+      createDOMNodes();
     }</strong>
       </code></pre>
       <div class="alert">
@@ -345,6 +345,191 @@ getNasaPictures();
           Метод <code>JSON.parse()</code> разбирает строку <code>JSON</code>, возможно с преобразованием получаемого в процессе разбора значения.
         </p>
       </div>
+      <pre><code>
+    function updateDOM() {
+      <span>// Get Favorites from localStorage</span>
+      if (localStorage.getItem("NASAFavorites")) {
+        favorites = JSON.parse(localStorage.getItem("NASAFavorites"));
+        console.log(favorites);
+      }
+    
+      createDONNodes();
+    }
+      <span>// получаю объект</span>
+      </code></pre>
+      <p>Добавляю параметр <code>page</code></p>
+      <pre><code>
+        function createDONNodes(<strong>page</strong>) {
+          console.log(<strong>page</strong>);
+          .. 
+        }
+        function updateDOM(<strong>page</strong>) {
+          ,,        
+          <strong>createDONNodes(page);</strong>
+        }
+        async function getNasaPictures() {
+          try {
+            const response = await fetch(apiUrl);
+            resultsArray = await response.json();
+            console.log(resultsArray);
+            <strong>updateDOM("favorites");</strong>
+          } catch (error) {
+            // Catch Error Here
+          }
+        }
+        <span>// консоль выведет "favorites"</span>
+      </code></pre>
+      <pre><code>
+        function createDOMNodes(page) {
+          <strong>const currentArray = page === "results" ? resultsArray : favorites;
+            console.log("currentArray: ", currentArray);</strong>
+          <strong>currentArray</strong>.forEach((result) => {...}
+        }
+        <span>// выше видно, что поменял resultsArray на currentArray</span>
+        <span>// На экране всё пропало - в currentArray попал не массив, а объект</span>
+      </code></pre>
+      <div class="alert">
+        <p>Метод  <code>Object.values()</code> возвращает <strong>массив</strong> значений перечисляемых свойств объекта в том же порядке что и цикл <code>for...in</code>. Разница между циклом и методом в том, что цикл перечисляет свойства и из цепочки прототипов.</p>
+      </div>
+      <p>Исправляю неотображение на экране:</p>
+      <p><code>page === "results" ? resultsArray : <strong>Object.values(favorites)</strong>;</code></p>
+      <p>Всё ок. И теперь на экране только выбранные элементы из favorites!</p>
+      <h2>Удаление favorites</h2>
+      <pre><code>
+    function createDOMNodes(page) {
+      const currentArray =
+        page === "results" ? resultsArray : Object.values(favorites);
+      console.log("currentArray: ", currentArray);
+      currentArray.forEach((result) => {
+        <span>// Save Text</span>
+        const saveText = document.createElement("p");
+        saveText.classList.add("clickable");
+        <strong>if (page === "results") {
+          saveText.textContent = "Add to Favorites";
+          saveText.setAttribute("onclick", `saveFavorite("${result.url}")`);
+        }else{
+          saveText.textContent = "Remove Favorites";
+          saveText.setAttribute("onclick", `removeFavorite("${result.url}")`);
+        }</strong>
+      }
+      <span>// элементы удаляются, но не в "живую" - нужна перезагрузка</span>
+      </code></pre>
+      <pre><code>
+    function updateDOM(page) {
+      // Get Favorites from localStorage
+      if (localStorage.getItem("NASAFavorites")) {
+        favorites = JSON.parse(localStorage.getItem("NASAFavorites"));
+        console.log(favorites);
+      }
+      <strong>imagesContainer.textContent = "";</strong>
+      createDOMNodes(page);
+    }
+    <span>// так удалятся "в живую"</span>
+      </code></pre>
+      <h2>Реализация элементов Fovorites & Load More</h2>
+      <pre><code>
+    async function getNasaPictures() {
+      try {
+        const response = await fetch(apiUrl);
+        resultsArray = await response.json();
+        updateDOM(<strong>"results"</strong>);
+      } catch (error) {
+        // Catch Error Here
+      }
+    }
+    <span>// с аргументом <code>"results"</code> отобразится новый ряд элементов</span>
+      </code></pre>
+      <p>Проверить ,что нужные h3 имеют атрибуты onclick c соответствующими значениями: </p>
+      <pre><code>
+  &lt;h3 class=&quot;clickable&quot; onclick=&quot;updateDOM(&#039;favorites&#039;)&quot;&gt;Favorites&lt;/h3&gt;         
+  &lt;h3 class=&quot;clickable&quot; onclick=&quot;getNasaPictures()&quot;&gt;Load More&lt;/h3&gt;
+  <span>// Всьо работает</span>
+      </code></pre>
+      <h2>Реализация лоадера</h2>
+      <pre><code>
+    &lt;div class=&quot;loader hidden&quot;&gt;
+      &lt;img src=&quot;./rocket.svg&quot; alt=&quot;Rocket Loading Animation&quot; /&gt;
+    &lt;/div&gt;
+      </code></pre>
+      <pre><code>
+    async function getNasaPictures() {
+      // Show loader
+      <strong>loader.classList.remove("hidden");</strong>
+      try {
+        const response = await fetch(apiUrl);
+        resultsArray = await response.json();
+        updateDOM("results");
+      } catch (error) {
+        getNasaPictures;
+        // Catch Error Here
+      }
+    }
+    <span>// фиксированный блок Loader виден</span>
+      </code></pre>
+      <pre><code>
+    let resultsArray = [];
+    let favorites = {};
+
+    function <strong>showContent()</strong> {
+      loader.classList.add("hidden");
+    }
+    .. 
+    function updateDOM(page) {
+      <span>// Get Favorites from localStorage</span>
+      if (localStorage.getItem("nasaFavorites")) {
+        favorites = JSON.parse(localStorage.getItem("nasaFavorites"));
+      }
+      <span>// Reset DOM, Create DOM Nodes, Show Content</span>
+      imagesContainer.textContent = "";
+      createDOMNodes(page);
+      <strong>showContent();</strong>
+    }
+      </code></pre>
+      <p>Перегрузка и всё работает</p>
+      <p>Но при перезагрузке(при нажатии на Load More) я буду находится в том месте страницы где был, а хочу, чтобы в начале</p>
+      <div class="alert">
+        <p>
+          Прокрутка документа до указанных координат. <br>
+          Синтаксис: <br>
+          <pre><code>
+          window.scrollTo(x-coord, y-coord)
+          window.scrollTo(options)
+          </code></pre>
+          <pre><code>
+        window.scrollTo( 0, 1000 );
+
+        <span>// этот код меняет поведение прокрутки на "smooth"</span>
+        window.scrollTo({
+          top: 100,
+          left: 100,
+          behavior: 'smooth'
+        });
+          </code></pre>
+        </p>
+      </div>
+      <pre><code>
+      <span>// добавить page</span>
+    function showContent(page) {
+      window.scrollTo({ top: 0, behavior: "instant" });
+      loader.classList.add("hidden");
+      <strong>if (page === "results") {
+        resultsNav.classList.remove("hidden");
+        favoritesNav.classList.add("hidden");
+      } else {
+        resultsNav.classList.add("hidden");
+        favoritesNav.classList.remove("hidden");
+      }</strong>
+    }
+    .. 
+    function updateDOM(page) {
+      ...
+      showContent(<strong>page</strong>);
+    }
+    <span>// теперь при выборе <code>Favorites</code> шапка будет <code>Load More NASA Image</code></span>
+      </code></pre>
+
+
+
 
       <!-- end -->
     </div>
