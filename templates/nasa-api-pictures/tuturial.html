@@ -331,6 +331,20 @@ getNasaPictures();
         <span>В application смотреть на localStorage</span>
       </code></pre>
       <h2>Перенос данных с localStorage на сайт</h2>
+      <p>Создам новую функцию и переименую старую</p>
+      <pre><code>
+    function <strong>createDONNodes()</strong> {
+      resultsArray.forEach((result) => {...}
+    }
+    <strong>function updateDOM() {
+      createDONNodes();
+    }</strong>
+      </code></pre>
+      <div class="alert">
+        <p>
+          Метод <code>JSON.parse()</code> разбирает строку <code>JSON</code>, возможно с преобразованием получаемого в процессе разбора значения.
+        </p>
+      </div>
 
       <!-- end -->
     </div>
