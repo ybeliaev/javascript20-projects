@@ -15,6 +15,49 @@
     <!-- my content -->
     <div class="wrapper">
       <h1>Math game</h1>
+      <p>Вначале получить элементы документа.</p>
+      <p>Реализация навешивания класса при клике:</p>
+      <p><code>startForm</code> - элемент форма:</p>
+      <pre><code>
+    &lt;form id=&quot;start-form&quot;&gt;
+      &lt;div class=&quot;selection-container&quot;&gt;..&lt;/div&gt;            
+      &lt;div class=&quot;selection-footer&quot;&gt;..&lt;/div&gt;            
+    &lt;/form&gt;
+      </code></pre>
+      <p>
+        <code>radioContainers</code> в отличии от <code>startForm</code> будет
+        NODEList (форма одна, а этих элементов четыре):
+      </p>
+      <pre><code>
+    0: div.radio-container
+    1: div.radio-container
+    2: div.radio-container
+    3: div.radio-container
+      </code></pre>
+      <p><code>ratioEl</code>:</p>
+      <pre><code>
+    &lt;div class=&quot;radio-container&quot;&gt;..&lt;/div&gt;
+      </code></pre>
+      <p>Соответственно, <code>radioEl.children</code> HTMLCollection:</p>
+      <pre><code>
+    0: label
+    1: input#value-10
+    2: span.best-score
+      </code></pre>
+
+      <pre><code>
+    startForm.addEventListener("click", () => {
+      radioContainers.forEach((radioEl) => {        
+        <span>// Remove Selected Label Styling</span>
+        radioEl.classList.remove("selected-label");
+        <span>// Add it back if radio input is checked</span>
+        if (radioEl.children[1].checked) {
+          radioEl.classList.add("selected-label");
+        }
+      });
+    });
+    <span>// Класс навешивается, бэк нажатого элемента меняется</span>
+      </code></pre>
 
       <!-- end -->
     </div>

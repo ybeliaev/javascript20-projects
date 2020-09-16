@@ -7,6 +7,7 @@ const countdownPage = document.getElementById("countdown-page");
 // Splash Page
 const startForm = document.getElementById("start-form");
 const radioContainers = document.querySelectorAll(".radio-container");
+
 const radioInputs = document.querySelectorAll("input");
 const bestScores = document.querySelectorAll(".best-score-value");
 // Countdown Page
@@ -19,4 +20,14 @@ const baseTimeEl = document.querySelector(".base-time");
 const penaltyTimeEl = document.querySelector(".penalty-time");
 const playAgainBtn = document.querySelector(".play-again");
 
-console.log(finalTimeEl);
+startForm.addEventListener("click", () => {
+  radioContainers.forEach((radioEl) => {
+    console.log(radioEl.children);
+    // Remove Selected Label Styling
+    radioEl.classList.remove("selected-label");
+    // Add it back if radio input is checked
+    if (radioEl.children[1].checked) {
+      radioEl.classList.add("selected-label");
+    }
+  });
+});
