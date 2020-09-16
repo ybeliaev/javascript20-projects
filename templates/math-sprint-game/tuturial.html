@@ -58,6 +58,51 @@
     });
     <span>// Класс навешивается, бэк нажатого элемента меняется</span>
       </code></pre>
+      <h2>Получение числа перед question после нажатия кнопки Start Round</h2>
+      <p>radioInputs: NodeList</p>
+      <pre><code>
+    0: input#value-10
+    1: input#value-25
+    2: input#value-50
+    3: input#value-99
+    <span>// каждый input имеет value с соотв. значением</span>
+      </code></pre>
+      <pre><code>
+
+    <span>// 3-Equations</span>
+    let questionAmount = 0;
+    .. 
+
+    <span>// 4-Get the value from selected radio button</span>
+    function getRadioValue() {
+      let radioValue;
+      radioInputs.forEach((radioInput) => {
+        if (radioInput.checked) {
+          radioValue = radioInput.value;
+        }
+      });
+      return radioValue;
+    }
+
+    <span>// 2-Form that decides amount of Questions</span>
+    function selectQuestionAmount(e) {
+      e.preventDefault();
+      questionAmount = getRadioValue();
+      console.log("question amount:", questionAmount);          
+    }
+
+    <span>//1 - Event Listeners</span>
+    startForm.addEventListener("submit", selectQuestionAmount);
+      </code></pre>
+      <p>Теперь выбрать вариант и клик на исполнение формы.</p>
+      <p>
+        Кстати, выбрав
+        <code
+          >startForm.addEventListener(<strong>"click"</strong>,
+          selectQuestionAmount);</code
+        >
+        будет работать неверно: ловить клики по всей форме
+      </p>
 
       <!-- end -->
     </div>
