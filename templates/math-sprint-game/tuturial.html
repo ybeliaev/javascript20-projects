@@ -123,8 +123,39 @@
     }
       </code></pre>
       <p>
-        Теперь при выборе варианта и нажатии кнопки появится страница с числом 3
+        Теперь при выборе варианта и нажатии кнопки появится страница с числом
+        3.
       </p>
+      <p>Теперь из html документа убрать число 3</p>
+      <pre><code>
+    &lt;!-- Countdown Page --&gt;
+    &lt;div class=&quot;card&quot; id=&quot;countdown-page&quot; hidden&gt;
+        &lt;h1 class=&quot;countdown&quot;&gt;3&lt;/h1&gt;
+    &lt;/div&gt;   
+      </code></pre>
+      <pre><code>
+      // Displays 3,2,1, GO!
+    function countdownStart() {
+      countdown.textContent = "3";
+      setTimeout(() => {
+        countdown.textContent = "2";
+      }, 1000);
+      setTimeout(() => {
+        countdown.textContent = "1";
+      }, 2000);
+      setTimeout(() => {
+        countdown.textContent = "GO!";
+      }, 3000);
+    }
+
+    // Navigate from splash page to Countdown page
+    function showCountdown() {
+      countdownPage.hidden = false;
+      splashPage.hidden = true;
+      <strong>countdownStart();</strong>
+    }
+
+      </code></pre>
 
       <!-- end -->
     </div>
