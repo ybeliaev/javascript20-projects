@@ -104,6 +104,27 @@
         >
         будет работать неверно: ловить клики по всей форме
       </p>
+      <h2>Показ countdown page</h2>
+      <pre><code>
+      // Navigate from splash page to Countdown page
+    function showCountdown() {
+      countdownPage.hidden = false;
+      splashPage.hidden = true;
+    }
+
+      // Form that decides amount of Questions
+    function selectQuestionAmount(e) {
+      e.preventDefault();
+      questionAmount = getRadioValue();
+      console.log("question amount:", questionAmount);
+      <strong>if (questionAmount) {
+        showCountdown();
+      }</strong>
+    }
+      </code></pre>
+      <p>
+        Теперь при выборе варианта и нажатии кнопки появится страница с числом 3
+      </p>
 
       <!-- end -->
     </div>

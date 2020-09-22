@@ -80,7 +80,6 @@ code strong {
   font-weight: 600;
 }
 a.link {
-  z-index: 3;
   margin: 25px 5px;
   text-transform: uppercase;
   color: rgb(128, 0, 128);

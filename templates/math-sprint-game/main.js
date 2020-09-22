@@ -34,6 +34,12 @@ startForm.addEventListener("click", () => {
   });
 });
 
+// Navigate from splash page to Countdown page
+function showCountdown() {
+  countdownPage.hidden = false;
+  splashPage.hidden = true;
+}
+
 // Get the value from selected radio button
 function getRadioValue() {
   let radioValue;
@@ -50,9 +56,9 @@ function selectQuestionAmount(e) {
   e.preventDefault();
   questionAmount = getRadioValue();
   console.log("question amount:", questionAmount);
-  //   if (questionAmount) {
-  //     showCountdown();
-  //   }
+  if (questionAmount) {
+    showCountdown();
+  }
 }
 
 // Event Listeners
