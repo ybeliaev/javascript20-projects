@@ -34,27 +34,27 @@ p {
   background-position: left center;
   background-repeat: no-repeat;
 }
-pre {
+/* pre {
   background-color: rgba(255, 240, 174, 0.6);
-}
-
+} */
 code {
+  font-size: 18px;
+}
+p code {
+  background-color: rgba(255, 240, 174, 0.6);
   line-height: 1.5;
   padding: 3px;
   padding-bottom: 3px;
   color: rgb(22, 22, 22);
   font-size: 1.3rem;
 }
-p code {
-  background-color: rgba(255, 240, 174, 0.6);
-}
-code span {
+/* code span {
   color: rgb(45, 45, 248);
   font-style: italic;
 }
 code span.excretion {
   color: #ff4800;
-}
+} */
 code strong {
   color: rgb(196, 30, 1);
 }
