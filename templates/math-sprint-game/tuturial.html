@@ -156,6 +156,121 @@
     }
 
       </code></pre>
+      <h2>Генерация рандомного уравнения(generate random equation )</h2>
+      <pre><code>
+    // Equations
+    let questionAmount = 0;
+    <strong>let equationsArray = [];</strong>
+
+    // Get Random Number up to a certain amount
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * Math.floor(max));
+    }
+    function createEquations() {
+      // Randomly choose how many correct equations there should be
+      // Случайным образом выберите, сколько должно быть правильных уравнений
+      const correctEquations = getRandomInt(questionAmount);
+      console.log("correctEquations:", correctEquations);
+      // Set amount of wrong equations
+      // Установите количество неправильных уравнений
+      const wrongEquations = questionAmount - correctEquations;
+      console.log("wrongEquations:", wrongEquations);
+    }
+    ... 
+    // Navigate from splash page to Countdown page
+    function showCountdown() {
+      countdownPage.hidden = false;
+      splashPage.hidden = true;
+      countdownStart();
+      <strong>createEquations();</strong>
+    }
+      </code></pre>
+      <p>Теперь выбираю опцию "10 question" жму и в консоли</p>
+      <pre><code>
+        questionAmount: 10
+        correctEquations: 6 // это число сгенерировано ф-ей getRandomInt в интервале 0-10
+        wrongEquations: 4 // эта переменная - разница двух верхних 
+      </code></pre>
+      <p>Теперь добавить задачи. Это будут уравнения умножения</p>
+      <pre><code>
+      // Game page
+      let firstNumber = 0;
+      let secondNumber = 0;
+      let equationObject = {};
+      const wrongFormat = []; // сюда попадут неверные варианты?
+
+      function createEquations() {
+        // Randomly choose how many correct equations there should be
+        // Случайным образом выберите, сколько должно быть правильных уравнений
+        const correctEquations = getRandomInt(questionAmount);
+        console.log("correctEquations:", correctEquations);
+        // Set amount of wrong equations
+        // Установите количество неправильных уравнений
+        const wrongEquations = questionAmount - correctEquations;
+        console.log("wrongEquations:", wrongEquations);
+        // Loop through for each correct equation, multiply random numbers up to 9, push to array
+        // Проитерировать каждое правильное уравнение, умножьте случайные числа до 9, нажмите в массив
+        for (let i = 0; i < correctEquations; i++) {
+          firstNumber = getRandomInt(9); // выбор числа для умноженияот 0 до 9
+          secondNumber = getRandomInt(9);
+          const equationValue = firstNumber * secondNumber;
+          const equation = `${firstNumber} x ${secondNumber} = ${equationValue}`;
+          equationObject = { value: equation, evaluated: "true" };
+          equationsArray.push(equationObject);
+        }
+        // Loop through for each wrong equation, mess with the equation results, push to array
+        for (let i = 0; i < wrongEquations; i++) {
+          firstNumber = getRandomInt(9);
+          secondNumber = getRandomInt(9);
+          const equationValue = firstNumber * secondNumber;
+          wrongFormat[0] = `${firstNumber} x ${secondNumber + 1} = ${equationValue}`;
+          wrongFormat[1] = `${firstNumber} x ${secondNumber} = ${equationValue - 1}`;
+          wrongFormat[2] = `${firstNumber + 1} x ${secondNumber} = ${equationValue}`;
+          const formatChoice = getRandomInt(2);// даст число-индекс для equation
+          const equation = wrongFormat[formatChoice];
+          equationObject = { value: equation, evaluated: "false" };
+          equationsArray.push(equationObject);
+        }
+        <strong>console.log("equationsArray: ",equationsArray)</strong>
+      }
+
+      </code></pre>
+      <p>Выберу вариант "10 Questions" жму и имею:</p>
+      <pre><code>
+      questionAmount: 10
+      correctEquations: 2
+      wrongEquations: 8
+      equationsArray: 
+      0: {value: "1 x 6 = 6", evaluated: "true"}
+      1: {value: "4 x 0 = 0", evaluated: "true"}
+      2: {value: "4 x 6 = 23", evaluated: "false"}
+      3: {value: "3 x 6 = 15", evaluated: "false"}
+      4: {value: "0 x 0 = -1", evaluated: "false"}
+      5: {value: "8 x 1 = 7", evaluated: "false"}
+      6: {value: "8 x 7 = 48", evaluated: "false"}
+      7: {value: "8 x 4 = 31", evaluated: "false"}
+      8: {value: "4 x 7 = 24", evaluated: "false"}
+      9: {value: "2 x 6 = 10", evaluated: "false"} 
+      </code></pre>
+      <p>Неверных вариантов выбило 8, верных 2, и это отразилось на массиве</p>
+      <p>Теперь эти варианты в массиве нужно раскидать.</p>
+      <a
+        href="https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array"
+        class="link"
+        >How to randomize (shuffle) a JavaScript array.</a
+      >
+      <p>
+        Код для перемешивания массива в отдельном файле <code>shuffle.js</code>
+      </p>
+      <p>Ссылку поместить в <code>index.html</code> и в коде:</p>
+      <pre><code>
+        function createEquations() {
+
+          ... 
+          shuffle(equationsArray);
+        }
+      </code></pre>
+      <p>Теперь элеменеты массива вперемешку.</p>
 
       <!-- end -->
     </div>

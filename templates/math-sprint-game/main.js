@@ -22,6 +22,55 @@ const playAgainBtn = document.querySelector(".play-again");
 
 // Equations
 let questionAmount = 0;
+let equationsArray = [];
+
+// Game page
+let firstNumber = 0;
+let secondNumber = 0;
+let equationObject = {};
+const wrongFormat = [];
+
+// Get Random Number up to a certain amount
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+// Create Correct/Incorrect Random Equations
+function createEquations() {
+  // Randomly choose how many correct equations there should be
+  // Случайным образом выберите, сколько должно быть правильных уравнений
+  const correctEquations = getRandomInt(questionAmount);
+  console.log("correctEquations:", correctEquations);
+  // Set amount of wrong equations
+  // Установите количество неправильных уравнений
+  const wrongEquations = questionAmount - correctEquations;
+  console.log("wrongEquations:", wrongEquations);
+  // Loop through for each correct equation, multiply random numbers up to 9, push to array
+  // Проитерировать каждое правильное уравнение, умножьте случайные числа до 9, нажмите в массив
+  for (let i = 0; i < correctEquations; i++) {
+    firstNumber = getRandomInt(9);
+    secondNumber = getRandomInt(9);
+    const equationValue = firstNumber * secondNumber;
+    const equation = `${firstNumber} x ${secondNumber} = ${equationValue}`;
+    equationObject = { value: equation, evaluated: "true" };
+    equationsArray.push(equationObject);
+  }
+  // Loop through for each wrong equation, mess with the equation results, push to array
+  for (let i = 0; i < wrongEquations; i++) {
+    firstNumber = getRandomInt(9);
+    secondNumber = getRandomInt(9);
+    const equationValue = firstNumber * secondNumber;
+    wrongFormat[0] = `${firstNumber} x ${secondNumber + 1} = ${equationValue}`;
+    wrongFormat[1] = `${firstNumber} x ${secondNumber} = ${equationValue - 1}`;
+    wrongFormat[2] = `${firstNumber + 1} x ${secondNumber} = ${equationValue}`;
+    const formatChoice = getRandomInt(2);
+    const equation = wrongFormat[formatChoice];
+    equationObject = { value: equation, evaluated: "false" };
+    equationsArray.push(equationObject);
+  }
+  shuffle(equationsArray);
+  console.log("equationsArray: ", equationsArray);
+}
 
 startForm.addEventListener("click", () => {
   radioContainers.forEach((radioEl) => {
@@ -53,6 +102,7 @@ function showCountdown() {
   countdownPage.hidden = false;
   splashPage.hidden = true;
   countdownStart();
+  createEquations();
 }
 
 // Get the value from selected radio button
@@ -70,7 +120,7 @@ function getRadioValue() {
 function selectQuestionAmount(e) {
   e.preventDefault();
   questionAmount = getRadioValue();
-  console.log("question amount:", questionAmount);
+  console.log("questionAmount:", questionAmount);
   if (questionAmount) {
     showCountdown();
   }
