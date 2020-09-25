@@ -271,6 +271,45 @@
         }
       </code></pre>
       <p>Теперь элеменеты массива вперемешку.</p>
+      <h2>Перенос всего этого добра в DOM &#128516;</h2>
+      <pre><code>
+      //Display Game Page
+      function showGamePage() {
+        gamePage.hidden = false;
+        countdownPage.hidden = true;
+      }
+      ... 
+      function createEquations() {
+        ... 
+        shuffle(equationsArray);
+        console.log("equationsArray: ", equationsArray);
+        <strong>equationToDOM();</strong>
+      }
+      // Add equations to DOM
+      function equationToDOM() {
+        equationsArray.forEach((equation) => {
+          // Item
+          const item = document.createElement("div");
+          item.classList.add("item");
+          // Equation text
+          const equationText = document.createElement("h1");
+          equationText.textContent = equation.value;
+          // Append
+          item.appendChild(equationText);
+          itemContainer.appendChild(item);
+        });
+      }
+      ... 
+      // Navigate from splash page to Countdown page
+      function showCountdown() {
+        countdownPage.hidden = false;
+        splashPage.hidden = true;
+        countdownStart();
+        createEquations();
+        <strong>setTimeout(showGamePage, 4000);</strong>
+      }
+      </code></pre>
+      <p>Теперь уравнения выводятся через 4 сек</p>
 
       <!-- end -->
     </div>

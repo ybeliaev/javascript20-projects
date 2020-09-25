@@ -30,6 +30,16 @@ let secondNumber = 0;
 let equationObject = {};
 const wrongFormat = [];
 
+// Time
+
+//Scroll
+
+//Display Game Page
+function showGamePage() {
+  gamePage.hidden = false;
+  countdownPage.hidden = true;
+}
+
 // Get Random Number up to a certain amount
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -70,6 +80,22 @@ function createEquations() {
   }
   shuffle(equationsArray);
   console.log("equationsArray: ", equationsArray);
+  equationToDOM();
+}
+
+// Add equations to DOM
+function equationToDOM() {
+  equationsArray.forEach((equation) => {
+    // Item
+    const item = document.createElement("div");
+    item.classList.add("item");
+    // Equation text
+    const equationText = document.createElement("h1");
+    equationText.textContent = equation.value;
+    // Append
+    item.appendChild(equationText);
+    itemContainer.appendChild(item);
+  });
 }
 
 startForm.addEventListener("click", () => {
@@ -103,6 +129,7 @@ function showCountdown() {
   splashPage.hidden = true;
   countdownStart();
   createEquations();
+  setTimeout(showGamePage, 4000);
 }
 
 // Get the value from selected radio button
