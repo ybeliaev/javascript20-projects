@@ -266,7 +266,7 @@
       <pre><code>
         function createEquations() {
 
-          ... 
+          //... 
           shuffle(equationsArray);
         }
       </code></pre>
@@ -278,9 +278,9 @@
         gamePage.hidden = false;
         countdownPage.hidden = true;
       }
-      ... 
+      //... 
       function createEquations() {
-        ... 
+        //... 
         shuffle(equationsArray);
         console.log("equationsArray: ", equationsArray);
         <strong>equationToDOM();</strong>
@@ -299,7 +299,7 @@
           itemContainer.appendChild(item);
         });
       }
-      ... 
+      //... 
       // Navigate from splash page to Countdown page
       function showCountdown() {
         countdownPage.hidden = false;
@@ -310,6 +310,75 @@
       }
       </code></pre>
       <p>Теперь уравнения выводятся через 4 сек</p>
+      <div class="alert">
+        <p>
+          <code>overflow-y: scroll</code> позволяет скрыть контент по оси y и
+          скролить элементы
+        </p>
+      </div>
+      <pre><code>
+          function createEquations() {
+            //... 
+            shuffle(equationsArray);
+            // две нижние строки убрать в createEquations()
+            console.log("equationsArray: ", equationsArray);
+            equationToDOM();
+          }
+          // Dynamically adding correct/incorrect equations
+          function populateGamePage() {
+            // Reset DOM, Set Blank Space Above
+            itemContainer.textContent = "";
+            // Spacer
+            const topSpacer = document.createElement("div");
+            topSpacer.classList.add("height-240");
+            // Selected Item
+            const selectedItem = document.createElement("div");
+            selectedItem.classList.add("selected-item");
+            // Append
+            itemContainer.append(topSpacer, selectedItem);
+          
+            // Create Equations, Build Elements in DOM
+            createEquations();
+            equationsToDOM();
+          
+            // Set Blank Space Below
+            const bottomSpacer = document.createElement("div");
+            bottomSpacer.classList.add("height-500");
+            itemContainer.appendChild(bottomSpacer);
+          }
+
+        // Navigate from splash page to Countdown page
+        function showCountdown() {
+          countdownPage.hidden = false;
+          splashPage.hidden = true;
+          countdownStart();
+          // замена createEquations() на populateGamePage()
+          populateGamePage(); 
+          setTimeout(showGamePage, 4000);
+        }
+        </code></pre>
+      <p>В результате после запуска получаю</p>
+      <pre><code>
+      &lt;div class=&quot;item-container&quot;&gt;
+        &lt;div class=&quot;height-240&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;selected-item&quot;&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;div class=&quot;height-500&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+        </code></pre>
+      <p>
+        <code>&lt;div class=&quot;selected-item&quot;&gt;&lt;/div&gt</code>
+        голубого цвета и <code>position: fixed</code>
+      </p>
 
       <!-- end -->
     </div>

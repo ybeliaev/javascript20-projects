@@ -79,12 +79,10 @@ function createEquations() {
     equationsArray.push(equationObject);
   }
   shuffle(equationsArray);
-  console.log("equationsArray: ", equationsArray);
-  equationToDOM();
 }
 
 // Add equations to DOM
-function equationToDOM() {
+function equationsToDOM() {
   equationsArray.forEach((equation) => {
     // Item
     const item = document.createElement("div");
@@ -96,6 +94,29 @@ function equationToDOM() {
     item.appendChild(equationText);
     itemContainer.appendChild(item);
   });
+}
+
+// Dynamically adding correct/incorrect equations
+function populateGamePage() {
+  // Reset DOM, Set Blank Space Above
+  itemContainer.textContent = "";
+  // Spacer
+  const topSpacer = document.createElement("div");
+  topSpacer.classList.add("height-240");
+  // Selected Item
+  const selectedItem = document.createElement("div");
+  selectedItem.classList.add("selected-item");
+  // Append
+  itemContainer.append(topSpacer, selectedItem);
+
+  // Create Equations, Build Elements in DOM
+  createEquations();
+  equationsToDOM();
+
+  // Set Blank Space Below
+  const bottomSpacer = document.createElement("div");
+  bottomSpacer.classList.add("height-500");
+  itemContainer.appendChild(bottomSpacer);
 }
 
 startForm.addEventListener("click", () => {
@@ -128,7 +149,7 @@ function showCountdown() {
   countdownPage.hidden = false;
   splashPage.hidden = true;
   countdownStart();
-  createEquations();
+  populateGamePage();
   setTimeout(showGamePage, 4000);
 }
 
