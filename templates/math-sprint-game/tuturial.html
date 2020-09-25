@@ -379,6 +379,46 @@
         <code>&lt;div class=&quot;selected-item&quot;&gt;&lt;/div&gt</code>
         голубого цвета и <code>position: fixed</code>
       </p>
+      <h2>Авто скроллинг и реакция на нажатия кнопок "верно" "неверно"</h2>
+      <p>Добавить кнопкам атрибуты клика</p>
+      <pre><code>
+      &lt;div class=&quot;item-footer&quot;&gt;
+        &lt;button class=&quot;wrong&quot; onclick=&quot;select(false)&quot;&gt;Wrong&lt;/button&gt;
+        &lt;button class=&quot;right&quot; onclick=&quot;select(true)&quot;&gt;Right&lt;/button&gt;
+      &lt;/div&gt;
+      </code></pre>
+      <div class="alert">
+        <p>
+          Метод <code>scroll()</code> интерфейса
+          <code>Element</code> прокручивает элемент до определенного набора
+          координат внутри данного элемента
+        </p>
+      </div>
+      <pre><code>
+      // Equations
+      let questionAmount = 0;
+      let equationsArray = [];
+      let playerGuessArray = [];
+      //..
+      //Scroll
+      let valueY = 0;
+      // Scroll, Store user selection in playerGuessArray
+      function select(guessedTrue) {
+        console.log("playerGuessArray: ", playerGuessArray);
+        // каждый клик по кнопке будет добавлять 80, т.к высота item 80px 
+        valueY += 80;
+        // itemContainer - обёртка всех элементов уавнений(см. его выше)
+        itemContainer.scroll(0, valueY);
+        // Add player guess to array: если аргумент true, то это в массив
+        return guessedTrue
+          ? playerGuessArray.push("true")
+          : playerGuessArray.push("false");
+      }
+      </code></pre>
+      <p>
+        Выбрать вопросы и клик по вариантам: массив заполняется и контейнер
+        вопросов скроллится вниз
+      </p>
 
       <!-- end -->
     </div>
