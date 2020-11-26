@@ -220,7 +220,7 @@ ul {
 /* tutorial */
 .tutorial {
     position: absolute;
-    top: 180%;
+    top: 100%;
     left: 5%;
     color: #8497fd
 }
