@@ -13,6 +13,7 @@ html {
 }
 
 body {
+    position: relative;
   margin: 0;
   background: url("./trees.jpg");
   background-size: cover;
@@ -40,6 +41,7 @@ ul {
 }
 
 .drag-container {
+
   margin: 20px;
 }
 
@@ -213,6 +215,14 @@ ul {
 
 .add-item:focus {
   outline: none;
+}
+
+/* tutorial */
+.tutorial {
+    position: absolute;
+    top: 180%;
+    left: 5%;
+    color: #8497fd
 }
 
 /* Media Query: Laptop */
